@@ -110,7 +110,7 @@
     const signature = config.renderCacheRevision + ':' + config.hitTest.maskWidth + ':' + ['ground-alpha', sign.element.dataset.groundMask].map(id => document.getElementById(id).outerHTML).join('');
     const cacheKey = `ground-${sign.name}`;
     const cached = await window.portfolioRenderCache.get(cacheKey, signature);
-    if (cached?.source?.startsWith('data:image/png;base64,') && cached.map?.alpha?.length === cached.map.width * cached.map.height) {
+    if (/^data:image\/(?:png|webp);base64,/.test(cached?.source || '') && cached.map?.alpha?.length === cached.map.width * cached.map.height) {
       sign.maskImage = await loadImage(cached.source);
       for (const root of [sign.element, sign.shadow]) root.style.setProperty('--ground-window', `url("${cached.source}")`);
       sign.element.dataset.renderCacheHit = 'true';

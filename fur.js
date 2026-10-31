@@ -45,7 +45,7 @@ window.createPortfolioFur = ({ layer, settings, schedule, enabled, interactive, 
     const pixels = Math.ceil(Math.max(settings.cacheHeight, maxHeight * (geometry?.scale || 1) * devicePixelRatio * 2));
     const signature = window.portfolioSettings.renderCacheRevision + ':' + pixels;
     let snapshots = await window.portfolioRenderCache.get('fur', signature);
-    if (!Array.isArray(snapshots) || snapshots.length !== 6 || snapshots.some(s => !/^fur0[12]-[123]$/.test(s.id) || !s.data?.startsWith('data:image/png;base64,') || !(s.w>0 && s.h>0))) snapshots = null;
+    if (!Array.isArray(snapshots) || snapshots.length !== 6 || snapshots.some(s => !/^fur0[12]-[123]$/.test(s.id) || !/^data:image\/(?:png|webp);base64,/.test(s.data || '') || !(s.w>0 && s.h>0))) snapshots = null;
     layer.dataset.cacheHit = String(!!snapshots);
     if (!snapshots) {
       const response = await fetch(layer.dataset.source);

@@ -12,9 +12,9 @@ window.portfolioSettings = Object.freeze({
         title: "萬聖節 × 聖誕節｜節日合體卡片",
         concept: "這件作品原先是為了交換卡片而創作，但因製作時間有限，於是將萬聖節與聖誕節結合在同一張卡片中，這張圖想融合兩種節日溫馨又詭異的氛圍，形成跨節日的創作主題。",
         sketches: Object.freeze([
-          { src: "assets/originals/featured/sketch-90aa28981194.png", name: "插圖27 2.PNG", width: 1181, height: 1748 },
-          { src: "assets/originals/featured/sketch-280f86a20dc3.png", name: "插圖27 3.PNG", width: 1748, height: 1181 },
-          { src: "assets/originals/featured/sketch-294089093390.png", name: "插圖27.PNG", width: 1748, height: 1181, selected: true },
+          { src: "assets/optimized/90aa28981194d3af14c88b560ccac1785776c8e65ccea9076e982a5f74199846.webp", name: "插圖27 2.PNG", width: 1181, height: 1748 },
+          { src: "assets/optimized/280f86a20dc386050a89e6f78926192742fd842ff314e3e99bcfbc4d636cc5af.webp", name: "插圖27 3.PNG", width: 1748, height: 1181 },
+          { src: "assets/optimized/2940890933903fffc4d5db9de96fcfcb1d4fa763ed35242bebac073e0584d0da.webp", name: "插圖27.PNG", width: 1748, height: 1181, selected: true },
         ].map(Object.freeze)),
       }),
       "插圖51拷貝.jpg": Object.freeze({
@@ -35,9 +35,9 @@ window.portfolioSettings = Object.freeze({
       zoomMs: 180,             // 放大／復位時間，毫秒；與貼圖一致。
       arrows: "assets/generated/portal/arrows.svg",
       cards: Object.freeze([
-        { name: "contact", label: "聯絡我", route: "mailto:Jerky628@gmail.com", src: "assets/originals/portal-complete/IMG_6718.PNG", canvas: [2048, 2048], viewBox: [300, 311, 1362, 1544], box: [179, 498, 497, 564] },
-        { name: "ip", label: "IP", route: "/ip", src: "assets/originals/portal-complete/IMG_6722.PNG", canvas: [2048, 2048], viewBox: [231, 365, 1493, 1326], box: [987, 540, 510, 453] },
-        { name: "materials", label: "材料科學", route: "/materials", src: "assets/originals/portal-complete/IMG_6720.PNG", canvas: [2048, 2048], viewBox: [213, 352, 1425, 1452], box: [1808, 499, 567, 578] },
+        { name: "contact", label: "聯絡我", route: "mailto:Jerky628@gmail.com", src: "assets/optimized/3e23883ee0bf2df750012567063d3a386549543e596e98bac8167f5d023a661a.webp", canvas: [2048, 2048], viewBox: [300, 311, 1362, 1544], box: [179, 498, 497, 564] },
+        { name: "ip", label: "IP", route: "/ip", src: "assets/optimized/d88f644fb5a51d911a874331010c311fd1b604cbb811e49b84e3349c57750e31.webp", canvas: [2048, 2048], viewBox: [231, 365, 1493, 1326], box: [987, 540, 510, 453] },
+        { name: "materials", label: "材料科學", route: "/materials", src: "assets/optimized/668cf07d427a1bacc12ce9d9bc939957b4f61467a2c3f543ebfe9495cd89ecbb.webp", canvas: [2048, 2048], viewBox: [213, 352, 1425, 1452], box: [1808, 499, 567, 578] },
       ].map(Object.freeze)),
     }),
   }),
@@ -69,9 +69,9 @@ window.portfolioSettings = Object.freeze({
       zoomMs: 180,             // 放大／復位時間，毫秒；與貼圖一致。
       arrows: "assets/generated/portal/arrows.svg",
       cards: Object.freeze([
-        { name: "contact", label: "聯絡我", route: "mailto:Jerky628@gmail.com", src: "assets/originals/portal-complete/IMG_6718.PNG", canvas: [2048, 2048], viewBox: [300, 311, 1362, 1544], box: [179, 498, 497, 564] },
-        { name: "illustration", label: "插圖", route: "/illustration", src: "assets/originals/portal-complete/IMG_6721.PNG", canvas: [2048, 2048], viewBox: [320, 284, 1307, 1609], box: [987, 450, 510, 627] },
-        { name: "materials", label: "材料科學", route: "/materials", src: "assets/originals/portal-complete/IMG_6720.PNG", canvas: [2048, 2048], viewBox: [213, 352, 1425, 1452], box: [1808, 499, 567, 578] },
+        { name: "contact", label: "聯絡我", route: "mailto:Jerky628@gmail.com", src: "assets/optimized/3e23883ee0bf2df750012567063d3a386549543e596e98bac8167f5d023a661a.webp", canvas: [2048, 2048], viewBox: [300, 311, 1362, 1544], box: [179, 498, 497, 564] },
+        { name: "illustration", label: "插圖", route: "/illustration", src: "assets/optimized/893ddb4cc6090e383e172c07b1282041e7724ca0179360083172916b189fe5ee.webp", canvas: [2048, 2048], viewBox: [320, 284, 1307, 1609], box: [987, 450, 510, 627] },
+        { name: "materials", label: "材料科學", route: "/materials", src: "assets/optimized/668cf07d427a1bacc12ce9d9bc939957b4f61467a2c3f543ebfe9495cd89ecbb.webp", canvas: [2048, 2048], viewBox: [213, 352, 1425, 1452], box: [1808, 499, 567, 578] },
       ].map(Object.freeze)),
     }),
     illustrations: window.portfolioIllustrations, // 縮圖與原檔對照另見 illustrations.js。
@@ -80,7 +80,7 @@ window.portfolioSettings = Object.freeze({
       zoomMs: 180,             // 放大及對話框淡入時間（毫秒）。
       pixelsPerSecond: 18,     // 長條預覽由上往下移動的速度；只在顯示時播放。
       preloadPixels: 250,     // 首圖接近可見範圍時才載入；預覽等首次碰到才載入。
-      dialog: "assets/originals/stickers/dialog.png", // 使用原始透明對話框，不重畫。
+      dialog: "assets/optimized/ccdc4bd81dcc8e0022ac2bd493377895e8bbb8a919858d433406df265a747351.webp", // 使用原始透明對話框，不重畫。
     }),
     // 編號對應原資料夾；填入真實 https 網址後，首圖會自動成為外部連結。
     stickers: Object.freeze([
@@ -90,11 +90,11 @@ window.portfolioSettings = Object.freeze({
   }),
   homeIntroductions: Object.freeze({
     delayMs: 28,
-    frame: "assets/originals/home-introductions/dialog.png",
+    frame: "assets/optimized/735b5fe4f269143f91af7ae3eeaaff62a98e3c619e8a7a75439b4ce1f72759b9.webp",
     cards: Object.freeze([
       { name: "ip", text: "綠綠的與棉花狗\n文創插圖・周邊", image: "assets/originals/home-introductions/ip.jpg", imageAlt: "綠綠的雨中原創插圖", box: [0.395,0.45,0.218] },
-      { name: "illustration", text: "原創角色\n日常練習與大圖\n之繪畫過程", image: "assets/originals/home-introductions/illustration.png", imageAlt: "萬聖節與聖誕節的雙人與餅乾人插畫", box: [0.678,0.29,0.214] },
-      { name: "materials", text: "選修、儀器技能\n生醫 × 電性專題\n水凝膠製程", image: "assets/originals/home-introductions/materials.png", imageAlt: "水凝膠與 PDMS 製程示意圖", box: [0.46,0.46,0.218] },
+      { name: "illustration", text: "原創角色\n日常練習與大圖\n之繪畫過程", image: "assets/optimized/9baef55bae94a7b892dd647b942cf4ed646028afb9979c928cea40fd430b3812.webp", imageAlt: "萬聖節與聖誕節的雙人與餅乾人插畫", box: [0.678,0.29,0.214] },
+      { name: "materials", text: "選修、儀器技能\n生醫 × 電性專題\n水凝膠製程", image: "assets/optimized/6bccbddce6e6c420c5cc29fa68f83c8eac63125947cb68295918f64c6dcd19ff.webp", imageAlt: "水凝膠與 PDMS 製程示意圖", box: [0.46,0.46,0.218] },
     ].map(Object.freeze)),
   }),
   motion: Object.freeze({

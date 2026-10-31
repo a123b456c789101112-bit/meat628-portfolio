@@ -3,7 +3,7 @@
   --scene-ratio: 2500 / 1406;
   --sky-color: #b6e7df;
   /* 64×64 原創手形；點擊熱點為最高的中指指尖（x=32、y=10）。 */
-  --hand-cursor: url("assets/cursor/hand-open.png") 32 10, auto;
+  --hand-cursor: url("assets/optimized/a0a4b5fd9c206d71ae3813bcd24b9fdbbb5cf34373c4fdab20de7e2339756dbc.webp") 32 10, auto;
 }
 
 * { box-sizing: border-box; }
