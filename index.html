@@ -1,0 +1,310 @@
+<!doctype html>
+<html lang="zh-Hant" data-routing="hash">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>個人作品集</title>
+    <link rel="stylesheet" href="styles.css?v=f6962c891d28">
+  </head>
+  <body>
+    <a class="home-link" id="home-link" href="#/" aria-label="回到主畫面" hidden>
+      <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M10 29 Q20 19 32 9 Q43 18 54 29 M16 25 L16 53 Q23 54 27 53 L27 38 L38 38 L38 53 L49 53 L49 25" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" filter="url(#ink-edge)" /></svg>
+    </a>
+    <div class="home-viewport" id="home-viewport">
+      <div class="home-stage">
+      <div class="home-landscape">
+      <svg class="home-background" viewBox="0 0 2500 1406" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+        <use href="#sky-art" />
+        <use href="#ground-art" />
+      </svg>
+    <main class="scene" id="home" aria-label="作品集首頁：IP、插畫、材料科學">
+      <!-- 沿用原草地輪廓隱藏埋入的圖片部分，不重畫草地或原始圖片。 -->
+      <svg class="scene__definitions" width="0" height="0" aria-hidden="true">
+        <defs>
+          <image id="sky-art" href="assets/originals/home-slope/sky.png" width="2500" height="1406" preserveAspectRatio="xMidYMid slice" />
+          <image id="ground-art" href="assets/originals/home-slope/grass.png" x="0" y="59.64583333" width="2500" height="1346.35416667" />
+          <image id="shadow-art" href="assets/ground/sign-shadow.png" width="2048" height="2048" />
+          <filter id="ground-alpha" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB">
+            <!-- 新草地已含透明度，直接沿用原始邊緣，不再由天空色差推算。 -->
+            <feColorMatrix type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 1 0" result="grass-alpha" />
+            <!-- 移位的遮罩只取主輪廓，避免把背景上的毛流再次複製到牌子前方。 -->
+            <feGaussianBlur in="grass-alpha" stdDeviation="40" result="ground-core" />
+            <feComponentTransfer in="ground-core" result="ground-shape">
+              <feFuncA type="linear" slope="8" intercept="-2" />
+            </feComponentTransfer>
+            <feComposite in="grass-alpha" in2="ground-shape" operator="in" />
+          </filter>
+          <mask id="ground-mask-illustration" maskUnits="userSpaceOnUse" x="0" y="0" width="2500" height="1406" style="mask-type: alpha">
+            <use href="#ground-art" transform="translate(1509.59 882) rotate(21.59) translate(-1509.59 -438)" filter="url(#ground-alpha)" />
+          </mask>
+          <mask id="ground-mask-materials" maskUnits="userSpaceOnUse" x="0" y="0" width="2500" height="1406" style="mask-type: alpha">
+            <use href="#ground-art" transform="translate(2117.99 1298) rotate(15.7) translate(-2117.99 -220)" filter="url(#ground-alpha)" />
+          </mask>
+          <mask id="ground-mask-ip" maskUnits="userSpaceOnUse" x="0" y="0" width="2500" height="1406" style="mask-type: alpha">
+            <use href="#ground-art" transform="translate(928.04 1252) rotate(30.19) translate(-928.04 -727)" filter="url(#ground-alpha)" />
+          </mask>
+        </defs>
+      </svg>
+
+      <!-- 只用 SVG 的觀看範圍排除 PNG 留白，原始圖片不改色、不重畫。 -->
+      <span class="sign-shadow sign-shadow--illustration" data-shadow="illustration" aria-hidden="true">
+        <span class="sign-shadow__anchor"><span class="sign-shadow__motion"><svg class="sign-shadow__art" viewBox="245 1117 1457 362"><use href="#shadow-art" /></svg></span></span>
+      </span>
+      <a class="sign sign--illustration" href="#/illustration" aria-label="插畫作品集" data-sign="illustration" data-ground-mask="ground-mask-illustration">
+        <span class="sign__anchor">
+        <span class="sign__motion">
+        <svg class="sign__art" viewBox="318 232 1361 1663" aria-hidden="true">
+          <title id="illustration-label">插畫</title>
+          <image id="sign-image-illustration" href="assets/signs/illustration-sticker.png" width="2048" height="2048" />
+        </svg>
+        </span>
+        </span>
+      </a>
+      <span class="sign-shadow sign-shadow--materials" data-shadow="materials" aria-hidden="true">
+        <span class="sign-shadow__anchor"><span class="sign-shadow__motion"><svg class="sign-shadow__art" viewBox="245 1117 1457 362"><use href="#shadow-art" /></svg></span></span>
+      </span>
+      <a class="sign sign--materials" href="#/materials" aria-label="材料科學作品集" data-sign="materials" data-ground-mask="ground-mask-materials">
+        <span class="sign__anchor">
+        <span class="sign__motion">
+        <svg class="sign__art" viewBox="211 318 1484 1488" aria-hidden="true">
+          <title id="materials-label">材料科學</title>
+          <image id="sign-image-materials" href="assets/signs/materials-sticker.png" width="2048" height="2048" />
+        </svg>
+        </span>
+        </span>
+      </a>
+      <span class="sign-shadow sign-shadow--ip" data-shadow="ip" aria-hidden="true">
+        <span class="sign-shadow__anchor"><span class="sign-shadow__motion"><svg class="sign-shadow__art" viewBox="245 1117 1457 362"><use href="#shadow-art" /></svg></span></span>
+      </span>
+      <a class="sign sign--ip" href="#/ip" aria-label="IP 作品集" data-sign="ip" data-ground-mask="ground-mask-ip">
+        <span class="sign__anchor">
+        <span class="sign__motion">
+        <svg class="sign__art" viewBox="229 305 1547 1388" aria-hidden="true">
+          <title id="ip-label">IP</title>
+          <image id="sign-image-ip" href="assets/signs/ip-sticker.png" width="2048" height="2048" />
+        </svg>
+        </span>
+        </span>
+      </a>
+      <!-- 只顯示使用者提供的毛流；不攔截牌子的滑鼠與點擊事件。 -->
+      <svg class="fur-layer" id="fur-layer" viewBox="0 0 2500 1406" data-source="assets/ground/fur-groups.svg" aria-hidden="true"></svg>
+    </main>
+      <div class="home-dialog-layer" id="home-dialog-layer"></div>
+      <section class="home-profile" aria-labelledby="home-profile-name">
+        <div class="home-profile__identity">
+          <h1 id="home-profile-name">蔡佳珆</h1>
+          <p class="home-profile__specialties">文創、插畫、工程</p>
+        </div>
+        <div class="home-profile__text">
+          <p><span class="home-profile__line">大學讀材料科學但喜歡畫圖！經營自己的IP與插畫</span><span class="home-profile__line">有材料專題和教育活動相關主視覺繪製經驗</span></p>
+        </div>
+      </section>
+      <nav class="home-social" aria-label="聯絡與社群連結">
+        <a class="home-social__link" data-social="email" href="mailto:Jerky628@gmail.com" aria-label="寄信給 Jerky628@gmail.com"><img src="assets/originals/home-social/IMG_6797.PNG" width="2048" height="2048" alt="" decoding="async" draggable="false"></a>
+        <a class="home-social__link" data-social="threads" href="https://www.threads.com/@meat628__?hl=zh-tw" target="_blank" rel="noopener noreferrer" aria-label="Threads"><img src="assets/originals/home-social/IMG_6798.PNG" width="2048" height="2048" alt="" decoding="async" draggable="false"></a>
+        <a class="home-social__link" data-social="instagram" href="https://www.instagram.com/meat628__/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><img src="assets/originals/home-social/IMG_6799.PNG" width="2048" height="2048" alt="" decoding="async" draggable="false"></a>
+      </nav>
+      </div>
+      </div>
+    </div>
+    <svg class="ink-definitions" width="0" height="0" aria-hidden="true"><defs>
+      <filter id="ink-edge" x="-8%" y="-8%" width="116%" height="116%"><feTurbulence type="fractalNoise" baseFrequency=".48" numOctaves="2" seed="8" result="grain" /><feDisplacementMap in="SourceGraphic" in2="grain" scale=".65" xChannelSelector="R" yChannelSelector="G" /></filter>
+      <filter id="home-social-ink" x="-5%" y="-5%" width="110%" height="110%" color-interpolation-filters="sRGB"><feMorphology in="SourceAlpha" operator="dilate" radius=".65" result="bold-alpha" /><feFlood flood-color="#315b38" result="original-ink" /><feComposite in="original-ink" in2="bold-alpha" operator="in" result="bold-ink" /></filter>
+      <symbol id="ink-circle" viewBox="0 0 100 100"><path d="M50 3 C75 1 95 17 97 45 C100 73 81 96 53 97 C26 99 4 82 3 54 C1 28 19 4 50 3 Z" fill="var(--ink-fill,none)" stroke="currentColor" stroke-width="1.8" vector-effect="non-scaling-stroke" stroke-linejoin="round" stroke-linecap="round" filter="url(#ink-edge)" /></symbol>
+    </defs></svg>
+    <section class="ip-viewport" id="ip-viewport" hidden aria-label="IP 角色作品集">
+      <div class="ip-hero" id="ip-characters" data-ip-section="角色">
+      <main class="ip-scene" id="ip-scene" aria-label="棉花狗、吐司、綠綠的">
+        <svg class="ip-definitions" width="0" height="0" aria-hidden="true"><defs>
+          <image id="ip-art-cotton-idle" data-source="assets/ip/cotton-idle.png" width="2500" height="1406" />
+          <image id="ip-art-cotton-hover" data-source="assets/ip/cotton-hover.png" width="2500" height="1406" />
+          <image id="ip-art-cotton-click" data-source="assets/ip/cotton-click.png" width="2500" height="1406" />
+          <image id="ip-art-toast-idle" data-source="assets/ip/toast-idle.png" width="2500" height="1406" />
+          <image id="ip-art-toast-hover" data-source="assets/ip/toast-hover.png" width="2500" height="1406" />
+          <image id="ip-art-toast-click" data-source="assets/ip/toast-click.png" width="2500" height="1406" />
+          <image id="ip-art-green-idle" data-source="assets/ip/green-idle.png" width="2500" height="1406" />
+          <image id="ip-art-green-hover" data-source="assets/ip/green-hover.png" width="2500" height="1406" />
+          <image id="ip-art-green-click" data-source="assets/ip/green-click.png" width="2500" height="1406" />
+          <clipPath id="ip-info-clip-cotton"><rect width="2500" height="746" /></clipPath>
+          <clipPath id="ip-info-clip-toast"><rect width="2500" height="472" /></clipPath>
+          <clipPath id="ip-info-clip-green"><rect width="2500" height="632" /></clipPath>
+        </defs></svg>
+        <button class="ip-character" type="button" data-character="cotton" data-active="false" aria-label="棉花狗" aria-expanded="false" aria-controls="ip-info-cotton">
+          <span class="ip-character__motion"><svg class="ip-character__art" aria-hidden="true">
+            <use data-ip-art="idle" href="#ip-art-cotton-idle" />
+            <use data-ip-art="hover" href="#ip-art-cotton-hover" />
+            <use data-ip-art="click" href="#ip-art-cotton-click" />
+          </svg></span>
+        </button>
+        <button class="ip-character" type="button" data-character="toast" data-active="false" aria-label="吐司" aria-expanded="false" aria-controls="ip-info-toast">
+          <span class="ip-character__motion"><svg class="ip-character__art" aria-hidden="true">
+            <use data-ip-art="idle" href="#ip-art-toast-idle" />
+            <use data-ip-art="hover" href="#ip-art-toast-hover" />
+            <use data-ip-art="click" href="#ip-art-toast-click" />
+          </svg></span>
+        </button>
+        <button class="ip-character" type="button" data-character="green" data-active="false" aria-label="綠綠的" aria-expanded="false" aria-controls="ip-info-green">
+          <span class="ip-character__motion"><svg class="ip-character__art" aria-hidden="true">
+            <use data-ip-art="idle" href="#ip-art-green-idle" />
+            <use data-ip-art="hover" href="#ip-art-green-hover" />
+            <use data-ip-art="click" href="#ip-art-green-click" />
+          </svg></span>
+        </button>
+        <svg class="ip-info" id="ip-info-cotton" viewBox="0 0 2500 1406" data-info="cotton" data-active="false" aria-hidden="true"><use href="#ip-art-cotton-hover" clip-path="url(#ip-info-clip-cotton)" /></svg>
+        <svg class="ip-info" id="ip-info-toast" viewBox="0 0 2500 1406" data-info="toast" data-active="false" aria-hidden="true"><use href="#ip-art-toast-hover" clip-path="url(#ip-info-clip-toast)" /></svg>
+        <svg class="ip-info" id="ip-info-green" viewBox="0 0 2500 1406" data-info="green" data-active="false" aria-hidden="true"><use href="#ip-art-green-hover" clip-path="url(#ip-info-clip-green)" /></svg>
+      </main>
+      </div>
+      <section class="ip-content ip-illustrations" id="ip-illustrations" data-ip-section="插圖" aria-labelledby="ip-illustrations-title">
+        <div class="illustration-heading">
+          <h2 id="ip-illustrations-title">插圖</h2>
+          <button class="gallery-toggle" id="gallery-toggle" type="button" aria-expanded="false" aria-controls="ip-gallery-grid">展開全部</button>
+        </div>
+        <div class="gallery-window" id="ip-gallery" aria-label="插圖跑馬燈">
+          <div class="gallery-row" data-gallery-row="0"><div class="gallery-track"></div></div>
+          <div class="gallery-row" data-gallery-row="1"><div class="gallery-track"></div></div>
+        </div>
+        <div class="gallery-grid" id="ip-gallery-grid" hidden aria-label="全部插圖"></div>
+      </section>
+      <section class="ip-content ip-stickers" id="ip-stickers" data-ip-section="貼圖" aria-labelledby="ip-stickers-title">
+        <h2 id="ip-stickers-title">貼圖</h2>
+        <div class="sticker-grid" id="ip-sticker-grid"></div>
+      </section>
+      <section class="ip-content ip-merchandise" id="ip-merchandise" data-ip-section="周邊" aria-labelledby="ip-merchandise-title">
+        <h2 id="ip-merchandise-title">周邊</h2>
+        <div class="merchandise-grid">
+          <figure class="merchandise-item" data-merchandise="飯友">
+            <div class="merchandise-photos merchandise-photos--pair">
+              <img data-merch-source="assets/originals/merchandise/20251220_151854.JPG" width="1675" height="1674" alt="飯友近照" loading="lazy" decoding="async">
+              <img data-merch-source="assets/originals/merchandise/20251220_154107.JPG" width="4000" height="2252" alt="飯友擺放照片" loading="lazy" decoding="async">
+            </div>
+            <figcaption><strong>飯友｜100 件全數售完</strong><p>獨立完成角色商品設計、廠商接洽、製作與銷售。</p></figcaption>
+          </figure>
+          <figure class="merchandise-item" data-merchandise="娃娃">
+            <div class="merchandise-photos"><img data-merch-source="assets/originals/merchandise/IMG_5224.JPG" width="2048" height="2048" alt="綠綠的娃娃" loading="lazy" decoding="async"></div>
+            <figcaption><strong>娃娃｜實體打樣</strong><p>將原創角色轉化為立體娃娃，探索不同的呈現方式。</p></figcaption>
+          </figure>
+          <figure class="merchandise-item" data-merchandise="貼紙">
+            <div class="merchandise-photos"><img data-merch-source="assets/originals/merchandise/IMG_5336.JPG" width="1181" height="1748" alt="角色貼紙" loading="lazy" decoding="async"></div>
+            <figcaption><strong>貼紙｜開放自由印刷</strong><p>將原創角色延伸為貼紙，開放自由下載與印製。</p></figcaption>
+          </figure>
+        </div>
+      </section>
+      <section class="ip-content ip-portals" id="ip-portals" data-ip-section="傳送門" aria-labelledby="ip-portals-title">
+        <h2 id="ip-portals-title">傳送門</h2>
+        <div class="portal-scene" id="ip-portal-scene" aria-label="前往其他專區與聯絡我"></div>
+      </section>
+      <nav class="ip-section-nav" aria-label="IP 頁面區域">
+        <button type="button" data-section-target="ip-characters" aria-controls="ip-characters" aria-current="location"><svg class="ink-circle" viewBox="0 0 100 100" aria-hidden="true"><use href="#ink-circle" /></svg><span>角色</span></button>
+        <button type="button" data-section-target="ip-illustrations" aria-controls="ip-illustrations"><svg class="ink-circle" viewBox="0 0 100 100" aria-hidden="true"><use href="#ink-circle" /></svg><span>插圖</span></button>
+        <button type="button" data-section-target="ip-stickers" aria-controls="ip-stickers"><svg class="ink-circle" viewBox="0 0 100 100" aria-hidden="true"><use href="#ink-circle" /></svg><span>貼圖</span></button>
+        <button type="button" data-section-target="ip-merchandise" aria-controls="ip-merchandise"><svg class="ink-circle" viewBox="0 0 100 100" aria-hidden="true"><use href="#ink-circle" /></svg><span>周邊</span></button>
+        <button type="button" data-section-target="ip-portals" aria-controls="ip-portals"><svg class="ink-circle" viewBox="0 0 100 100" aria-hidden="true"><use href="#ink-circle" /></svg><span>傳送門</span></button>
+      </nav>
+    </section>
+    <main class="illustration-viewport" id="illustration-viewport" hidden aria-label="插圖作品集">
+      <section class="ip-content illustration-finished" id="illustration-finished" data-illustration-section aria-labelledby="illustration-finished-title">
+        <h2 id="illustration-finished-title">成品</h2>
+        <div class="illustration-board" aria-label="插圖作品"></div>
+      </section>
+      <section class="ip-content illustration-interests" id="illustration-interests" data-illustration-section aria-labelledby="illustration-interests-title">
+        <h2 id="illustration-interests-title">創作興趣</h2>
+        <p class="illustration-interests__text"><span>我喜歡描繪人物之間的互動與表情</span>
+<span>還有在插圖中加入不同風格的元素作為實驗，</span>
+<span>探索更多元的表達方式</span></p>
+      </section>
+      <section class="ip-content ip-portals" id="illustration-portals" data-illustration-section aria-labelledby="illustration-portals-title">
+        <h2 id="illustration-portals-title">傳送門</h2>
+        <div class="portal-scene" id="illustration-portal-scene" aria-label="前往聯絡我、IP與材料科學"></div>
+      </section>
+      <nav class="illustration-section-nav" aria-label="插圖頁面區域">
+        <button type="button" data-illustration-target="illustration-finished" aria-controls="illustration-finished"><svg class="ink-circle" viewBox="0 0 100 100" aria-hidden="true"><use href="#ink-circle" /></svg><span>成品</span></button>
+        <button type="button" data-illustration-target="illustration-interests" aria-controls="illustration-interests"><svg class="ink-circle" viewBox="0 0 100 100" aria-hidden="true"><use href="#ink-circle" /></svg><span>創作<br>興趣</span></button>
+        <button type="button" data-illustration-target="illustration-portals" aria-controls="illustration-portals"><svg class="ink-circle" viewBox="0 0 100 100" aria-hidden="true"><use href="#ink-circle" /></svg><span>傳送門</span></button>
+      </nav>
+      <dialog class="illustration-lightbox" id="illustration-lightbox" aria-label="完整作品檢視">
+        <button class="illustration-lightbox__control illustration-lightbox__close" type="button" data-lightbox-close aria-label="關閉完整檢視" autofocus>
+          <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M20 20 Q31 31 44 44 M44 20 Q31 33 20 44" /></svg>
+        </button>
+        <div class="illustration-lightbox__stage" aria-busy="false">
+          <h2 class="illustration-lightbox__featured-title" hidden></h2>
+          <img class="illustration-lightbox__image" alt="" decoding="async" draggable="false">
+          <section class="illustration-lightbox__featured-details" hidden>
+            <h3 data-lightbox-sketches-heading>不同版本草圖</h3>
+            <div class="illustration-lightbox__sketches"></div>
+            <h3 data-lightbox-concept-heading>創作理念</h3>
+            <p class="illustration-lightbox__concept"></p>
+          </section>
+        </div>
+        <button class="illustration-lightbox__control illustration-lightbox__previous" type="button" data-lightbox-previous aria-label="上一張作品">
+          <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M39 15 Q28 25 19 32 Q28 41 39 49 M20 32 L48 32" /></svg>
+        </button>
+        <button class="illustration-lightbox__control illustration-lightbox__next" type="button" data-lightbox-next aria-label="下一張作品">
+          <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M25 15 Q36 25 45 32 Q36 41 25 49 M44 32 L16 32" /></svg>
+        </button>
+        <span class="illustration-lightbox__status" role="status" aria-live="polite"></span>
+      </dialog>
+    </main>
+    <!-- illustration-static-start -->
+    <noscript>
+      <style>
+        noscript:has(.illustration-static) { display:contents; }
+        .illustration-static { display:none; }
+        html[data-static-route="/illustration"] .illustration-static, .illustration-static:target { display:block; }
+        html[data-static-route="/illustration"] .home-viewport, html:has(.illustration-static:target) .home-viewport { display:none; }
+      </style>
+      <main class="illustration-viewport illustration-static" id="/illustration" aria-label="插圖作品集">
+        <section class="ip-content illustration-finished"><h2>成品</h2>
+          <div class="illustration-board" aria-label="插圖作品" style="--illustration-board-ratio:1000 / 2465.0"><figure class="illustration-artwork" data-work="插圖27.PNG" style="--art-x:0.0%;--art-y:0.0%;--art-width:100.0%;--art-height:27.408884381338744%"><img src="assets/generated/illustration-page/work-9baef55bae-480.webp" srcset="assets/generated/illustration-page/work-9baef55bae-480.webp 480w, assets/generated/illustration-page/work-9baef55bae-960.webp 960w, assets/originals/illustration-page/work-9baef55bae.png 1748w" sizes="(max-width:600px) 80vw, 70.0vw" alt="插圖作品 插圖27" width="1748" height="1181" loading="lazy" decoding="async"></figure>
+<figure class="illustration-artwork" data-work="插圖51拷貝.jpg" style="--art-x:0.0%;--art-y:29.046653144016226%;--art-width:56.0%;--art-height:14.382880324543612%"><img src="assets/generated/illustration-page/work-1d4d7f8557-480.webp" srcset="assets/generated/illustration-page/work-1d4d7f8557-480.webp 480w, assets/generated/illustration-page/work-1d4d7f8557-960.webp 960w, assets/originals/illustration-page/work-1d4d7f8557.jpg 2761w" sizes="(max-width:600px) 80vw, 39.2vw" alt="插圖作品 插圖51拷貝" width="2761" height="1748" loading="lazy" decoding="async"></figure>
+<figure class="illustration-artwork" data-work="IMG_3505.JPG" style="--art-x:57.5%;--art-y:29.046653144016226%;--art-width:42.5%;--art-height:12.931034482758621%"><img src="assets/originals/illustration-page/work-5f4325ebf4.jpg" srcset="assets/originals/illustration-page/work-5f4325ebf4.jpg 1200w" sizes="(max-width:600px) 80vw, 29.75vw" alt="插圖作品 IMG_3505" width="1200" height="900" loading="lazy" decoding="async"></figure>
+<figure class="illustration-artwork" data-work="IMG_5084.JPG" style="--art-x:0.0%;--art-y:45.030425963488845%;--art-width:53.5%;--art-height:21.703853955375255%"><img src="assets/generated/illustration-page/work-5709a621de-480.webp" srcset="assets/generated/illustration-page/work-5709a621de-480.webp 480w, assets/generated/illustration-page/work-5709a621de-960.webp 960w, assets/originals/illustration-page/work-5709a621de.jpg 2048w" sizes="(max-width:600px) 80vw, 37.45vw" alt="插圖作品 IMG_5084" width="2048" height="2048" loading="lazy" decoding="async"></figure>
+<figure class="illustration-artwork" data-work="448拷貝.png" style="--art-x:61.0%;--art-y:45.030425963488845%;--art-width:39.0%;--art-height:22.37975659229209%"><img src="assets/generated/illustration-page/work-2fcce1053f-480.webp" srcset="assets/generated/illustration-page/work-2fcce1053f-480.webp 480w, assets/generated/illustration-page/work-2fcce1053f-960.webp 960w, assets/originals/illustration-page/work-2fcce1053f.png 2480w" sizes="(max-width:600px) 80vw, 27.3vw" alt="插圖作品 448拷貝" width="2480" height="3508" loading="lazy" decoding="async"></figure>
+<figure class="illustration-artwork" data-work="插圖5.PNG" style="--art-x:0.0%;--art-y:69.1683569979716%;--art-width:48.0%;--art-height:27.53809330628803%"><img src="assets/generated/illustration-page/work-9050094fb7-480.webp" srcset="assets/generated/illustration-page/work-9050094fb7-480.webp 480w, assets/generated/illustration-page/work-9050094fb7-960.webp 960w, assets/originals/illustration-page/work-9050094fb7.png 3508w" sizes="(max-width:600px) 80vw, 33.6vw" alt="插圖作品 插圖5" width="3508" height="4961" loading="lazy" decoding="async"></figure>
+<figure class="illustration-artwork" data-work="488_3拷貝.png" style="--art-x:65.0%;--art-y:69.1683569979716%;--art-width:27.0%;--art-height:10.953346855983773%"><img src="assets/generated/illustration-page/work-cceb652ea8-480.webp" srcset="assets/generated/illustration-page/work-cceb652ea8-480.webp 480w, assets/generated/illustration-page/work-cceb652ea8-960.webp 960w, assets/originals/illustration-page/work-cceb652ea8.png 1748w" sizes="(max-width:600px) 80vw, 18.900000000000002vw" alt="插圖作品 488_3拷貝" width="1748" height="1748" loading="lazy" decoding="async"></figure>
+<figure class="illustration-artwork" data-work="488_1拷貝.png" style="--art-x:54.0%;--art-y:81.33874239350912%;--art-width:46.0%;--art-height:18.66125760649087%"><img src="assets/generated/illustration-page/work-37f1855c29-480.webp" srcset="assets/generated/illustration-page/work-37f1855c29-480.webp 480w, assets/generated/illustration-page/work-37f1855c29-960.webp 960w, assets/originals/illustration-page/work-37f1855c29.png 1748w" sizes="(max-width:600px) 80vw, 32.2vw" alt="插圖作品 488_1拷貝" width="1748" height="1748" loading="lazy" decoding="async"></figure>
+
+
+
+
+
+
+</div>
+        </section>
+      </main>
+    </noscript>
+    <!-- illustration-static-end -->
+    <main class="materials-viewport" id="materials-viewport" aria-label="材料科學" hidden>
+      <div class="materials-tabs"><div role="tablist" aria-label="材料科學內容選擇"></div></div>
+      <div class="materials-panels"></div>
+      <section class="ip-content ip-portals materials-portals" id="materials-portals" aria-labelledby="materials-portals-title">
+        <h2 id="materials-portals-title">傳送門</h2>
+        <div class="portal-scene" id="materials-portal-scene" aria-label="前往聯絡我、IP 與插圖"></div>
+      </section>
+      <nav class="materials-section-nav" aria-label="材料科學章節"></nav>
+    </main>
+    <!-- 專區只保留站內路由容器，等待使用者提供設計與作品。 -->
+    <main id="portfolio-page" hidden>
+      <section id="contact-content" aria-label="聯絡我" hidden>
+        <div id="contact-social-links"></div>
+        <div id="contact-email"></div>
+      </section>
+    </main>
+    <script src="illustrations.js?v=8a62fc1256f5"></script>
+    <script src="illustration-artworks.js?v=1561e50c83bc"></script>
+    <script src="settings.js?v=470f668b764a"></script>
+    <script src="render-cache.js?v=61b1f8095bf0"></script>
+    <script src="startup-cache.js?v=9b0fdd9182fb"></script>
+    <script src="fur.js?v=cec7a30be2fc"></script>
+    <script src="ip.js?v=eeab341fbfb1"></script>
+    <script src="stickers.js?v=70f49939ce5d"></script>
+    <script src="portals.js?v=b76ba4fe6290"></script>
+    <script src="ip-portfolio.js?v=ab5349149462"></script>
+    <script src="illustration-page.js?v=f4788643df21"></script>
+    <script src="home-introductions.js?v=9866af138c50"></script>
+    <script src="home-profile.js?v=e5c73fc54a98"></script>
+    <script src="materials-content.js?v=e96db63b70ef"></script>
+    <script src="materials-page.js?v=187a0b29ea71"></script>
+    <script src="app.js?v=47a511867990"></script>
+  </body>
+</html>
