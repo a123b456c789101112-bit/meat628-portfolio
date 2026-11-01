@@ -11,6 +11,7 @@ window.createIPPortfolio = ({ root, settings, reduceMotion, navigate }) => {
   const sources = new WeakMap(), images = [];
   const preload = settings.preloadPixels || 400;
   let visible = false, inView = false, nearView = false, expanded = false;
+  let charactersReady = false;
   let hovered = null, focused = null, touched = null, selected = null, navFrame = 0;
   gallery.style.setProperty('--gallery-zoom', settings.zoom);
   gallery.style.setProperty('--gallery-zoom-ms', `${settings.zoomMs}ms`);
@@ -20,7 +21,7 @@ window.createIPPortfolio = ({ root, settings, reduceMotion, navigate }) => {
 
   const merchandise = [...root.querySelectorAll('[data-merch-source]')];
   function hydrateMerchandise(image, force=false) {
-    if (!visible || image.dataset.loaded) return;
+    if (!visible || !charactersReady || image.dataset.loaded) return;
     const box = image.getBoundingClientRect();
     if (!force && (box.bottom < -preload || box.top > innerHeight + preload)) return;
     // 已由鄰近範圍排程；取消第二層原生 lazy，否則會再次等到進入畫面。
@@ -44,6 +45,7 @@ window.createIPPortfolio = ({ root, settings, reduceMotion, navigate }) => {
     return `${Math.ceil(card.getBoundingClientRect().width * (card.closest('#ip-gallery-grid') ? settings.zoom : 1))}px`;
   }
   function hydrate(image) {
+    if(!visible || !charactersReady) return;
     const art = sources.get(image);
     if (!art) return;
     if (image.closest('.gallery-card').getBoundingClientRect().width > 0) image.sizes = sizes(image);
@@ -70,7 +72,7 @@ window.createIPPortfolio = ({ root, settings, reduceMotion, navigate }) => {
   }, { root: gallery, rootMargin: `0px ${preload}px` });
 
   function refreshNearby() {
-    if (!visible) return;
+    if (!visible || !charactersReady) return;
     if (expanded) {
       for (const image of images) if (image.closest('#ip-gallery-grid')) {
         const b = image.getBoundingClientRect();
@@ -219,14 +221,19 @@ window.createIPPortfolio = ({ root, settings, reduceMotion, navigate }) => {
   new IntersectionObserver(entries => { inView = entries[0].isIntersecting && entries[0].intersectionRatio >= .001; sync(); }, { threshold: .001 }).observe(gallery);
   new IntersectionObserver(entries => { nearView = entries[0].isIntersecting; if (nearView) refreshNearby(); }, { rootMargin: `${preload}px 0px` }).observe(gallery);
   return {
-    setVisible(show) {
+    setVisible(show, characterPreparation) {
       const entered = show && !visible; visible = show;
-      stickerCollection.setVisible(show);
-      portals.setVisible(show);
-      if (!show) clearSelection();
+      if (!show) { stickerCollection.setVisible(false);portals.setVisible(false);clearSelection(); }
       if (show) {
         if (entered) { window.scrollTo({ top: 0, behavior: 'instant' }); if (expanded) setExpanded(false); }
-        measure(); updateNavigation(); refreshNearby(); merchandise.forEach(image=>hydrateMerchandise(image));
+        measure();updateNavigation();
+        // 讓首屏角色先完成；失敗時仍放行其他作品，避免整頁無法操作。
+        Promise.resolve(characterPreparation).catch(()=>{}).then(()=>{
+          charactersReady=true;
+          if(!visible) return;
+          stickerCollection.setVisible(true);portals.setVisible(true);
+          measure();updateNavigation();refreshNearby();merchandise.forEach(image=>hydrateMerchandise(image));
+        });
       }
       sync();
     },

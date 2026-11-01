@@ -73,8 +73,9 @@
     event.preventDefault(); navigate('/');
   });
 
-  async function loadImage(source) {
+  async function loadImage(source, priority='auto') {
     const image = new Image();
+    image.fetchPriority=priority;
     image.src = source;
     await image.decode();
     return image;
@@ -356,6 +357,7 @@
       sign.active = active;
       sign.element.dataset.active = String(active);
       if (active) {
+        if(sign.name==='ip') warmIP();
         sign.releasePending = false;
         startSpring(sign, "rise", now);
       } else release(sign, now);
@@ -475,7 +477,7 @@
     illustrationPage.setVisible(isIllustration);
     document.getElementById("contact-content").hidden = route !== "/contact";
     ip.setVisible(isIP);
-    ipPortfolio.setVisible(isIP);
+    ipPortfolio.setVisible(isIP, isIP ? ip.initialize() : null);
     document.title = onHome ? "個人作品集" : routes[route];
     if (onHome && !wasHome) window.scrollTo({top:0,behavior:'instant'});
     homeTouchStart = null;
@@ -628,6 +630,14 @@
     return furInitialization;
   }
 
+  function warmIP() { return ip.initialize().catch(()=>{}); }
+  function scheduleIPWarm() {
+    if(navigator.connection?.saveData) return;
+    const prepare=()=>{if(onHome && !document.hidden) warmIP();};
+    if('requestIdleCallback' in window) requestIdleCallback(prepare,{timeout:500});
+    else setTimeout(prepare,150);
+  }
+
   function prepareHomeArtwork() {
     if (!homeArtworkPreparation) homeArtworkPreparation=(async()=>{
       const artwork=['sky-art','ground-art','shadow-art'].map(id=>loadImage(document.getElementById(id).href.baseVal));
@@ -636,6 +646,7 @@
       await new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)));
       homeViewport.dataset.paintReady='true';
       window.finishHomePaint?.();
+      scheduleIPWarm();
       if(onHome) { updateGeometry();updatePointer();schedule(); }
     })();
     return homeArtworkPreparation;

@@ -196,8 +196,9 @@ window.createPortfolioIP = ({ scene, settings, loadImage, alphaMap, reduceMotion
       await Promise.all(["idle", "hover"].map(async (state) => {
         const element = scene.querySelector(`#ip-art-${character.name}-${state}`);
         const source = element.dataset.source;
+        // 六張角色／Hover 圖優先解碼，下方畫廊稍後再預載。
+        const image = await loadImage(source, 'high');
         element.setAttribute("href", source);
-        const image = await loadImage(source);
         character.maps[state] = alphaMap(image, 512, Math.round(512 * b.height / b.width), b);
       }));
     }));
