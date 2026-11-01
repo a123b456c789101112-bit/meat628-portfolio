@@ -46,6 +46,7 @@
   let homeTouchStart = null;
   let homeTouchActivatedAt = -Infinity;
   let furInitialization = null, groundInitialization = null;
+  let homeArtworkPreparation = null;
   let resolveHomePaint;
   const homePaintReady = new Promise(resolve => { resolveHomePaint = resolve; });
   const fur = window.createPortfolioFur({
@@ -56,7 +57,7 @@
   });
   const homeIntroductions=window.createHomeIntroductions({
     layer:document.getElementById('home-dialog-layer'),viewport:homeViewport,
-    profile:document.querySelector('.home-profile'),settings:config.homeIntroductions,reduceMotion,
+    profile:document.querySelector('.home-profile'),settings:config.homeIntroductions,reduceMotion,onReady:schedule,
   });
   const ip = window.createPortfolioIP({
     scene: document.getElementById("ip-scene"), settings: config.ip,
@@ -495,8 +496,8 @@
       if (frame) cancelAnimationFrame(frame);
       frame = 0;
     } else if (ready) {
-      ensureFur();
       updateGeometry();
+      prepareHomeArtwork();
       updatePointer();
       schedule();
     }
@@ -627,9 +628,22 @@
     return furInitialization;
   }
 
+  function prepareHomeArtwork() {
+    if (!homeArtworkPreparation) homeArtworkPreparation=(async()=>{
+      const artwork=['sky-art','ground-art','shadow-art'].map(id=>loadImage(document.getElementById(id).href.baseVal));
+      await Promise.allSettled([...artwork,homePaintReady,ensureFur(),homeIntroductions.preload()]);
+      // SVG、遮罩和對話框都已解碼；同一格解除隱藏，沒有漸進補圖。
+      await new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)));
+      homeViewport.dataset.paintReady='true';
+      window.finishHomePaint?.();
+      if(onHome) { updateGeometry();updatePointer();schedule(); }
+    })();
+    return homeArtworkPreparation;
+  }
+
   async function initialize() {
     updateGeometry();
-    if (onHome) ensureFur();
+    if (onHome) prepareHomeArtwork();
     const ground = () => groundInitialization || (groundInitialization = backgroundDataUrl());
     await Promise.all(signs.map(async (sign) => {
       const crop = sign.art.viewBox.baseVal;
@@ -648,6 +662,8 @@
   renderRoute(currentRoute());
   initialize().catch((error) => {
     scene.dataset.ready = "error";
+    resolveHomePaint();
+    window.finishHomePaint?.();
     console.error("首頁互動初始化失敗", error);
   });
 })();

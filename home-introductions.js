@@ -1,6 +1,6 @@
 /* 首頁原創對話框：取牌子相同的運動軌跡，僅延後少量時間。 */
 "use strict";
-window.createHomeIntroductions = ({layer,viewport,profile,settings,reduceMotion}) => {
+window.createHomeIntroductions = ({layer,viewport,profile,settings,reduceMotion,onReady}) => {
   const svgNS='http://www.w3.org/2000/svg';
   const source=path=>window.portfolioEmbeddedAssets?.[path] || path;
   let geometry=null;
@@ -13,14 +13,36 @@ window.createHomeIntroductions = ({layer,viewport,profile,settings,reduceMotion}
     const content=document.createElement('div');content.className='home-dialog__content';
     const copy=document.createElement('p');copy.className='home-dialog__copy';copy.id=`home-introduction-${config.name}`;copy.textContent=config.text;
     const image=new Image();image.className='home-dialog__image';image.alt=config.imageAlt;image.decoding='async';image.draggable=false;
-    image.addEventListener('load',()=>{panel.dataset.loaded='true';});
     content.append(copy,image);panel.append(frame,content);layer.append(panel);
-    return {config,panel,background,image,samples:[{time:0,offset:0}],loaded:false,baseX:0,baseY:0,width:0,height:0};
+    return {config,panel,background,image,samples:[{time:0,offset:0}],loaded:false,loading:null,baseX:0,baseY:0,width:0,height:0};
   });
-  function ensure(card) {
-    if(card.loaded) return;
-    card.loaded=true;card.background.setAttribute('href',source(settings.frame));card.image.src=source(card.config.image);
+  let frameLoading;
+  function prepareFrame() {
+    if (!frameLoading) {
+      const image = new Image(); image.src = source(settings.frame);
+      frameLoading = image.decode().then(() => image).catch(error => { frameLoading=null; throw error; });
+    }
+    return frameLoading;
   }
+  function ensure(card) {
+    const required=Math.ceil(Math.max(1,card.width)*.83*devicePixelRatio*1.25);
+    const variant=card.config.variants?.find(v=>v.width>=required);
+    const target=source(variant?.src || card.config.image);
+    if(card.loaded && card.loadedSource===target) return Promise.resolve();
+    if(card.loading) return card.loading;
+    card.loading=(async()=>{
+      const candidate = new Image(); candidate.decoding='async';
+      // 依顯示大小與螢幕像素密度挑足夠清晰的小圖，完整原稿仍保留。
+      candidate.src=target;
+      await Promise.all([candidate.decode(),prepareFrame()]);
+      card.background.setAttribute('href',source(settings.frame));
+      card.image.src=candidate.src;
+      await card.image.decode();
+      card.loaded=true;card.loadedSource=target;card.panel.dataset.loaded='true';onReady?.();
+    })().catch(()=>{card.panel.dataset.loaded='error';}).finally(()=>{card.loading=null;});
+    return card.loading;
+  }
+  function preload() { return Promise.all(cards.map(ensure)); }
   function artworkEdges(sign,stage,view) {
     if(!sign.alpha) {
       const rect=sign.art.getBoundingClientRect();
@@ -79,6 +101,7 @@ window.createHomeIntroductions = ({layer,viewport,profile,settings,reduceMotion}
       }
       Object.assign(card.panel.style,{left:`${card.baseX}px`,width:`${card.width}px`});
       card.panel.style.setProperty('--dialog-font-size',`${Math.max(14,card.width*.077)}px`);
+      if(card.loaded) ensure(card);
     }
   }
 
@@ -97,7 +120,7 @@ window.createHomeIntroductions = ({layer,viewport,profile,settings,reduceMotion}
       const progress=b.time===a.time ? 1 : Math.max(0,Math.min(1,(time-a.time)/(b.time-a.time)));
       const offset=reduceMotion.matches ? 0 : a.offset+(b.offset-a.offset)*progress;
       const opacity=reduceMotion.matches ? Number(sign.active) : Math.min(1,Math.max(0,-offset/Math.max(1,sign.lift)*4));
-      const shown=opacity>.001;
+      const shown=opacity>.001 && card.loaded;
       card.panel.style.opacity=String(opacity);card.panel.style.visibility=shown?'visible':'hidden';
       card.panel.setAttribute('aria-hidden',String(!shown));
       const top=Math.max(12,Math.min(card.baseY+offset*geometry.scale,geometry.view.height-card.height-12));
@@ -111,5 +134,5 @@ window.createHomeIntroductions = ({layer,viewport,profile,settings,reduceMotion}
       card.samples=[{time:0,offset:0}];card.panel.style.opacity='0';card.panel.style.visibility='hidden';card.panel.setAttribute('aria-hidden','true');
     }
   }
-  return {resize,step,reset};
+  return {resize,step,reset,preload};
 };

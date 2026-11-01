@@ -235,8 +235,12 @@ window.createIllustrationPage = ({ root, settings, reduceMotion, navigate }) => 
     card.style.cssText = `--art-x:${x/boardWidth*100}%;--art-y:${y/boardHeight*100}%;--art-width:${width/boardWidth*100}%;--art-height:${height/boardHeight*100}%`;
     const image = new Image(); image.width = art.width; image.height = art.height;
     image.alt = ''; image.loading = 'lazy'; image.decoding = 'async'; image.draggable = false;
-    image.addEventListener('load', () => {
-      if (image.naturalWidth > 0) { image.dataset.loaded = 'true'; reveal(image,index); }
+    image.addEventListener('load', async () => {
+      const current=image.currentSrc;
+      try {
+        await image.decode();
+        if (image.currentSrc===current && image.naturalWidth > 0) { image.dataset.loaded = 'true'; reveal(image,index); }
+      } catch (_) { /* 切換 srcset 時由下一次 load 接手。 */ }
     });
     image.addEventListener('error', () => { image.dataset.loaded = 'error'; console.error('插圖作品讀取失敗', art.name); });
     sources.set(image,art); images.push(image); card.append(image); board.append(card); observer.observe(image);

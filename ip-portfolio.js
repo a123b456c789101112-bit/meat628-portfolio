@@ -19,11 +19,17 @@ window.createIPPortfolio = ({ root, settings, reduceMotion, navigate }) => {
   const source = path => window.portfolioEmbeddedAssets?.[path] || path;
 
   const merchandise = [...root.querySelectorAll('[data-merch-source]')];
-  function hydrateMerchandise(image) {
+  function hydrateMerchandise(image, force=false) {
     if (!visible || image.dataset.loaded) return;
     const box = image.getBoundingClientRect();
-    if (box.bottom < -preload || box.top > innerHeight + preload) return;
-    image.dataset.loaded = 'loading'; image.src = source(image.dataset.merchSource);
+    if (!force && (box.bottom < -preload || box.top > innerHeight + preload)) return;
+    // 已由鄰近範圍排程；取消第二層原生 lazy，否則會再次等到進入畫面。
+    image.loading='eager';image.dataset.loaded = 'loading';
+    if(image.dataset.merchSrcset) {
+      image.sizes=`${Math.ceil(box.width*1.1)}px`;
+      image.srcset=image.dataset.merchSrcset;
+    }
+    image.src = source(image.dataset.merchSource);
     image.decode().then(() => { image.dataset.loaded = 'true'; }).catch(error => {
       image.dataset.loaded = 'error'; console.error('周邊照片讀取失敗', error);
     });
@@ -43,6 +49,7 @@ window.createIPPortfolio = ({ root, settings, reduceMotion, navigate }) => {
     if (image.closest('.gallery-card').getBoundingClientRect().width > 0) image.sizes = sizes(image);
     if (image.dataset.hydrated === 'true') return;
     image.dataset.hydrated = 'true';
+    image.dataset.loaded = 'loading';
     // 已由可見範圍判斷延遲指派，現在確實預載下一小段，避免再被原生 lazy 排程延後。
     image.loading = 'eager';
     // 先設定 sizes/srcset，再給 src，避免先請求錯誤的大尺寸。
@@ -182,10 +189,21 @@ window.createIPPortfolio = ({ root, settings, reduceMotion, navigate }) => {
     }
   }
   function queueNavigation() { if (visible && !navFrame) navFrame = requestAnimationFrame(updateNavigation); }
-  for (const button of navigation) button.addEventListener('click', () => {
+  function prepareSection(id) {
+    if (!visible) return;
+    if(id==='ip-stickers') stickerCollection.preload();
+    if(id==='ip-merchandise') merchandise.forEach(image=>hydrateMerchandise(image,true));
+    if(id==='ip-illustrations') { nearView=true;refreshNearby(); }
+  }
+  for (const button of navigation) {
+    button.addEventListener('pointerenter',()=>prepareSection(button.dataset.sectionTarget));
+    button.addEventListener('focus',()=>prepareSection(button.dataset.sectionTarget));
+    button.addEventListener('click', () => {
+    prepareSection(button.dataset.sectionTarget);
     clearSelection();
     document.getElementById(button.dataset.sectionTarget).scrollIntoView({ behavior: reduceMotion.matches ? 'instant' : 'smooth', block: 'start' });
-  });
+    });
+  }
   document.addEventListener('click', event => { if (visible && !event.target.closest('.gallery-card')) { touched = null; sync(); } });
   root.addEventListener('keydown', event => { if (event.key === 'Escape') clearSelection(); });
   window.addEventListener('scroll', queueNavigation, { passive: true });
@@ -208,7 +226,7 @@ window.createIPPortfolio = ({ root, settings, reduceMotion, navigate }) => {
       if (!show) clearSelection();
       if (show) {
         if (entered) { window.scrollTo({ top: 0, behavior: 'instant' }); if (expanded) setExpanded(false); }
-        measure(); updateNavigation(); refreshNearby(); merchandise.forEach(hydrateMerchandise);
+        measure(); updateNavigation(); refreshNearby(); merchandise.forEach(image=>hydrateMerchandise(image));
       }
       sync();
     },

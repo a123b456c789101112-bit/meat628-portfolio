@@ -30,7 +30,7 @@ window.portfolioMaterialsContent = [
           },
           {
             "type": "figure",
-            "src": "assets/optimized/e0125563aefa39430276edf186bf608ad981663e0974e2c113eb1db8eb9edb58.webp",
+            "src": "assets/optimized/aaa0ee840a7bddbb8fb30c62fd33acda6a55f73926eaf9c8114cc2a3e1be0280.webp",
             "caption": "圖1、TENG元件製作示意圖",
             "width": 1046,
             "height": 459
@@ -51,14 +51,14 @@ window.portfolioMaterialsContent = [
             "items": [
               {
                 "type": "figure",
-                "src": "assets/optimized/3cfea86272282ee9d581cbfe924b99c83e5a179c3ed4e0db9c655aaf17f1f947.webp",
+                "src": "assets/optimized/671985dd4f2c4de31b3d28886930b7fd9570101ed747a33b6142709366d1d21c.webp",
                 "caption": "圖2、不同水重量分率的離子電導率測量",
                 "width": 792,
                 "height": 313
               },
               {
                 "type": "figure",
-                "src": "assets/optimized/46a3a9a45f2e768eaee318a02e4c716e42e6145a516a8fd5d5c36288a1f04756.webp",
+                "src": "assets/optimized/5834232879e8ad29bf9528ac798923887b4ef2d03459ce305aa8ced9330ae49b.webp",
                 "caption": "圖3、不同水重量分率的應力-應變曲線",
                 "width": 439,
                 "height": 307
@@ -71,7 +71,7 @@ window.portfolioMaterialsContent = [
           },
           {
             "type": "figure",
-            "src": "assets/optimized/64086c75071fafbb630c1c86e4fb6438b49bf1adc973718925db8592bc79689d.webp",
+            "src": "assets/optimized/ef3e37fa0c9ecff453117b0fd1b62d5117c1ca006a0a1dc29d85b9cd51f072a4.webp",
             "caption": "圖4、不同水重量分率的TENG短路電流與開路電壓",
             "width": 982,
             "height": 353

@@ -4,7 +4,17 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>個人作品集</title>
-    <link rel="stylesheet" href="styles.css?v=4263b1d5ddab">
+    <script>
+      // 僅攔住尚未解碼的首頁圖層；文字與導覽維持可用，沒有額外載入畫面。
+      document.documentElement.classList.add('home-art-preparing');
+      window.finishHomePaint = () => {
+        clearTimeout(window.homePaintDeadline);
+        document.documentElement.classList.remove('home-art-preparing');
+      };
+      window.homePaintDeadline = setTimeout(window.finishHomePaint, 15000);
+    </script>
+    <link rel="preload" as="image" href="assets/optimized/fb9694c743b95bca476851fddd7d3d0e98d9698d5ca3030caac87f0358b32438.webp" fetchpriority="high">
+    <link rel="stylesheet" href="styles.css?v=9c9fe7a93b80">
   </head>
   <body>
     <a class="home-link" id="home-link" href="#/" aria-label="回到主畫面" hidden>
@@ -21,9 +31,9 @@
       <!-- 沿用原草地輪廓隱藏埋入的圖片部分，不重畫草地或原始圖片。 -->
       <svg class="scene__definitions" width="0" height="0" aria-hidden="true">
         <defs>
-          <image id="sky-art" href="assets/optimized/5b7a8b0c29b5bf606a1326e40f0df2653af84c93ddacfe7a352bc3a3a3c381c8.webp" width="2500" height="1406" preserveAspectRatio="xMidYMid slice" />
-          <image id="ground-art" href="assets/optimized/8cbbfd890b652533bc6e65f06830c9f22c8d15fa438e546c432d8eb0784badfb.webp" x="0" y="59.64583333" width="2500" height="1346.35416667" />
-          <image id="shadow-art" href="assets/optimized/c69dc6a3a0f24d67f04de2061b6a1ca5fbebb63977114b27475952056919b0a3.webp" width="2048" height="2048" />
+          <image id="sky-art" href="assets/optimized/84de5ff3eadb3728243943b7d3accf9263ea522ed90b8bc0631f4f7603963e8b.webp" width="2500" height="1406" preserveAspectRatio="xMidYMid slice" />
+          <image id="ground-art" href="assets/optimized/fb9694c743b95bca476851fddd7d3d0e98d9698d5ca3030caac87f0358b32438.webp" x="0" y="59.64583333" width="2500" height="1346.35416667" />
+          <image id="shadow-art" href="assets/optimized/fb6a82c02733fdf2472bb6829df9deccbc13807e554a980068740fe20f33ecf9.webp" width="2048" height="2048" />
           <filter id="ground-alpha" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB">
             <!-- 新草地已含透明度，直接沿用原始邊緣，不再由天空色差推算。 -->
             <feColorMatrix type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 1 0" result="grass-alpha" />
@@ -55,7 +65,7 @@
         <span class="sign__motion">
         <svg class="sign__art" viewBox="318 232 1361 1663" aria-hidden="true">
           <title id="illustration-label">插畫</title>
-          <image id="sign-image-illustration" href="assets/optimized/775227557806f73bed01849a1c3d27c7f1e50144614541bf1dcb7519f75fbc4a.webp" width="2048" height="2048" />
+          <image id="sign-image-illustration" href="assets/optimized/67619a6d683e0be1af312abbcc53269eaf3842ae11f401504cd6ba5a9287912c.webp" width="2048" height="2048" />
         </svg>
         </span>
         </span>
@@ -68,7 +78,7 @@
         <span class="sign__motion">
         <svg class="sign__art" viewBox="211 318 1484 1488" aria-hidden="true">
           <title id="materials-label">材料科學</title>
-          <image id="sign-image-materials" href="assets/optimized/c5fb9472112e17e1389f66213a497e16355d82ff14a41819985f51cb431b427f.webp" width="2048" height="2048" />
+          <image id="sign-image-materials" href="assets/optimized/c943e03627b110d1a096e3102078253c258e38a661d4243d47baf05d7b50e12d.webp" width="2048" height="2048" />
         </svg>
         </span>
         </span>
@@ -81,7 +91,7 @@
         <span class="sign__motion">
         <svg class="sign__art" viewBox="229 305 1547 1388" aria-hidden="true">
           <title id="ip-label">IP</title>
-          <image id="sign-image-ip" href="assets/optimized/93579499190f1463a3f0814c17cf18fed5f54146d1e21c1615da51dd7e87b759.webp" width="2048" height="2048" />
+          <image id="sign-image-ip" href="assets/optimized/37cb7505a35649696af56ce9d2cec8792074d2f518f82070824eaf3cb17b3c54.webp" width="2048" height="2048" />
         </svg>
         </span>
         </span>
@@ -100,9 +110,9 @@
         </div>
       </section>
       <nav class="home-social" aria-label="聯絡與社群連結">
-        <a class="home-social__link" data-social="email" href="mailto:Jerky628@gmail.com" aria-label="寄信給 Jerky628@gmail.com"><img src="assets/optimized/3459109ba13a4f133677467d5f8da38dfc5dddfce7ef8069a160b56cbb44712d.webp" width="2048" height="2048" alt="" decoding="async" draggable="false"></a>
-        <a class="home-social__link" data-social="threads" href="https://www.threads.com/@meat628__?hl=zh-tw" target="_blank" rel="noopener noreferrer" aria-label="Threads"><img src="assets/optimized/b590c9ad92d673014b47f0d6d1fe46f36ccf7e83efa97877f69ad8e9fe5afc3b.webp" width="2048" height="2048" alt="" decoding="async" draggable="false"></a>
-        <a class="home-social__link" data-social="instagram" href="https://www.instagram.com/meat628__/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><img src="assets/optimized/07a699e1e26d6553e7ab0a9f6b37aeed94bc4b559f374bb2e9934e1940a996cd.webp" width="2048" height="2048" alt="" decoding="async" draggable="false"></a>
+        <a class="home-social__link" data-social="email" href="mailto:Jerky628@gmail.com" aria-label="寄信給 Jerky628@gmail.com"><img src="assets/optimized/6764aa57e809f97ed8dcd1bd8ab3abeb00911a07987a2c59cc7eff4f295c3ef3.webp" width="2048" height="2048" alt="" decoding="async" draggable="false"></a>
+        <a class="home-social__link" data-social="threads" href="https://www.threads.com/@meat628__?hl=zh-tw" target="_blank" rel="noopener noreferrer" aria-label="Threads"><img src="assets/optimized/0b605ad51f3b0267b3eb613d4afa01bd968c7956af7ca6dccaea301fb1c90267.webp" width="2048" height="2048" alt="" decoding="async" draggable="false"></a>
+        <a class="home-social__link" data-social="instagram" href="https://www.instagram.com/meat628__/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><img src="assets/optimized/404a75e348b5bc5714529e3176b3ce5ecf098c9c23e9842b20729d7329e56b80.webp" width="2048" height="2048" alt="" decoding="async" draggable="false"></a>
       </nav>
       </div>
       </div>
@@ -116,15 +126,15 @@
       <div class="ip-hero" id="ip-characters" data-ip-section="角色">
       <main class="ip-scene" id="ip-scene" aria-label="棉花狗、吐司、綠綠的">
         <svg class="ip-definitions" width="0" height="0" aria-hidden="true"><defs>
-          <image id="ip-art-cotton-idle" data-source="assets/optimized/2e48906632f318fb120850ece11f3773f9ff3792b791216576b76027719e424a.webp" width="2500" height="1406" />
-          <image id="ip-art-cotton-hover" data-source="assets/optimized/83db09a1c6a9a79881b1355ebef8497aa44613b45344f3ba3670d3ed8b56af06.webp" width="2500" height="1406" />
-          <image id="ip-art-cotton-click" data-source="assets/optimized/88e20d3e3a91dc22f8773f04adbe6789124fa20f4d7eadc381b7e7c1f6f919c4.webp" width="2500" height="1406" />
-          <image id="ip-art-toast-idle" data-source="assets/optimized/0794a047bac5b607036c5b4c31115b5e3e93974bfa8be7664dace4075a5e71d1.webp" width="2500" height="1406" />
-          <image id="ip-art-toast-hover" data-source="assets/optimized/1cae3426ea0017ed14d5ea074ac8cb2933af58fc45ab57f128ce576f5b1aac75.webp" width="2500" height="1406" />
-          <image id="ip-art-toast-click" data-source="assets/optimized/d8154d8e3a77d463642ceefaddb4829c355d15cf2cc5668498ca3b604ed90caa.webp" width="2500" height="1406" />
-          <image id="ip-art-green-idle" data-source="assets/optimized/bafcf9e8ca9803563123053854094bea35da06dd5889dc46acfca31a14c239f0.webp" width="2500" height="1406" />
-          <image id="ip-art-green-hover" data-source="assets/optimized/fab7c603acf5b79d6cf3768af21a129b5c53961260e02cae7ca573261a181133.webp" width="2500" height="1406" />
-          <image id="ip-art-green-click" data-source="assets/optimized/0d06d4aed6be8b10da8031162456029f41966ed1937bf39f8e6afdfd2ec5ae97.webp" width="2500" height="1406" />
+          <image id="ip-art-cotton-idle" data-source="assets/optimized/058a39d3969368eb3e4829151b7b8051e97d648e07dd51801ca43175f75e352a.webp" width="2500" height="1406" />
+          <image id="ip-art-cotton-hover" data-source="assets/optimized/ef52352cfb2dc2a32364cc473c145b930a42d0aecf156d05f89c3ff9fc53e8bb.webp" width="2500" height="1406" />
+          <image id="ip-art-cotton-click" data-source="assets/optimized/3abdec5d829d14345775855398eb7a5334255d8510f0ad049e8e0dff111813f6.webp" width="2500" height="1406" />
+          <image id="ip-art-toast-idle" data-source="assets/optimized/e973f23daa3c8dba63fded1003da3b9cd7bc5f505b18b9b545417f44c1b043d9.webp" width="2500" height="1406" />
+          <image id="ip-art-toast-hover" data-source="assets/optimized/55226ea59ae0a6cb0b76bf85949ce5a8e42a6e00064e81f4310be7314ea26c1c.webp" width="2500" height="1406" />
+          <image id="ip-art-toast-click" data-source="assets/optimized/708cca528a47af34ba62910354bc0aec7bdbb0f1512986600340400024d7c853.webp" width="2500" height="1406" />
+          <image id="ip-art-green-idle" data-source="assets/optimized/0dd7998a3def085e7eae17bf80828f7b18add6249d6b7342c098cd139e00da1a.webp" width="2500" height="1406" />
+          <image id="ip-art-green-hover" data-source="assets/optimized/0a7cbb403df68b3c2ef93e5743482c3a580f723b1088bb3848b5e71250c32804.webp" width="2500" height="1406" />
+          <image id="ip-art-green-click" data-source="assets/optimized/8853e0212643019791ec0e575cafe7a1d0f68e7d2a1b209ced09f9ba92579d01.webp" width="2500" height="1406" />
           <clipPath id="ip-info-clip-cotton"><rect width="2500" height="746" /></clipPath>
           <clipPath id="ip-info-clip-toast"><rect width="2500" height="472" /></clipPath>
           <clipPath id="ip-info-clip-green"><rect width="2500" height="632" /></clipPath>
@@ -181,11 +191,11 @@
             <figcaption><strong>飯友｜100 件全數售完</strong><p>獨立完成角色商品設計、廠商接洽、製作與銷售。</p></figcaption>
           </figure>
           <figure class="merchandise-item" data-merchandise="娃娃">
-            <div class="merchandise-photos"><img data-merch-source="assets/originals/merchandise/IMG_5224.JPG" width="2048" height="2048" alt="綠綠的娃娃" loading="lazy" decoding="async"></div>
+            <div class="merchandise-photos"><img data-merch-source="assets/optimized/6721e23815f5f84f5def67e9d89264269d290750487b81ccd52706010efef0ea.webp" data-merch-srcset="assets/optimized/1b7e7fb44de74ba1a6e749741ab7c056be67d88416b6c1696f23661ff296bae8.webp 640w, assets/optimized/6721e23815f5f84f5def67e9d89264269d290750487b81ccd52706010efef0ea.webp 2048w" width="2048" height="2048" alt="綠綠的娃娃" loading="lazy" decoding="async"></div>
             <figcaption><strong>娃娃｜實體打樣</strong><p>將原創角色轉化為立體娃娃，探索不同的呈現方式。</p></figcaption>
           </figure>
           <figure class="merchandise-item" data-merchandise="貼紙">
-            <div class="merchandise-photos"><img data-merch-source="assets/originals/merchandise/IMG_5336.JPG" width="1181" height="1748" alt="角色貼紙" loading="lazy" decoding="async"></div>
+            <div class="merchandise-photos"><img data-merch-source="assets/optimized/e182d92002cce6ea0713182f6d0b63cd186f3223ac40008e662cad0869a8ec0e.webp" width="1181" height="1748" alt="角色貼紙" loading="lazy" decoding="async"></div>
             <figcaption><strong>貼紙｜開放自由印刷</strong><p>將原創角色延伸為貼紙，開放自由下載與印製。</p></figcaption>
           </figure>
         </div>
@@ -255,14 +265,14 @@
       </style>
       <main class="illustration-viewport illustration-static" id="/illustration" aria-label="插圖作品集">
         <section class="ip-content illustration-finished"><h2>成品</h2>
-          <div class="illustration-board" aria-label="插圖作品" style="--illustration-board-ratio:1000 / 2465.0"><figure class="illustration-artwork" data-work="插圖27.PNG" style="--art-x:0.0%;--art-y:0.0%;--art-width:100.0%;--art-height:27.408884381338744%"><img src="assets/generated/illustration-page/work-9baef55bae-480.webp" srcset="assets/generated/illustration-page/work-9baef55bae-480.webp 480w, assets/generated/illustration-page/work-9baef55bae-960.webp 960w, assets/optimized/9baef55bae94a7b892dd647b942cf4ed646028afb9979c928cea40fd430b3812.webp 1748w" sizes="(max-width:600px) 80vw, 70.0vw" alt="插圖作品 插圖27" width="1748" height="1181" loading="lazy" decoding="async"></figure>
-<figure class="illustration-artwork" data-work="插圖51拷貝.jpg" style="--art-x:0.0%;--art-y:29.046653144016226%;--art-width:56.0%;--art-height:14.382880324543612%"><img src="assets/generated/illustration-page/work-1d4d7f8557-480.webp" srcset="assets/generated/illustration-page/work-1d4d7f8557-480.webp 480w, assets/generated/illustration-page/work-1d4d7f8557-960.webp 960w, assets/originals/illustration-page/work-1d4d7f8557.jpg 2761w" sizes="(max-width:600px) 80vw, 39.2vw" alt="插圖作品 插圖51拷貝" width="2761" height="1748" loading="lazy" decoding="async"></figure>
+          <div class="illustration-board" aria-label="插圖作品" style="--illustration-board-ratio:1000 / 2465.0"><figure class="illustration-artwork" data-work="插圖27.PNG" style="--art-x:0.0%;--art-y:0.0%;--art-width:100.0%;--art-height:27.408884381338744%"><img src="assets/optimized/3452f6fb436ad7e8e88f091d3efe5e5f145c3a6286ee41187a08c631188653d8.webp" srcset="assets/optimized/3452f6fb436ad7e8e88f091d3efe5e5f145c3a6286ee41187a08c631188653d8.webp 480w, assets/optimized/bb8816c2a052817d6cf047c01a820725073b05560204e78fb70e6566a8a165c3.webp 960w, assets/optimized/ec2d56fd29feb365623939179d3f4234ca486af907ce17acc5d702790fb13f4a.webp 1748w" sizes="(max-width:600px) 80vw, 70.0vw" alt="插圖作品 插圖27" width="1748" height="1181" loading="lazy" decoding="async"></figure>
+<figure class="illustration-artwork" data-work="插圖51拷貝.jpg" style="--art-x:0.0%;--art-y:29.046653144016226%;--art-width:56.0%;--art-height:14.382880324543612%"><img src="assets/optimized/e70cf6ebc98e2b2de2f39a022b19527f90f924de2f496efa7763d9c905ecdba6.webp" srcset="assets/optimized/e70cf6ebc98e2b2de2f39a022b19527f90f924de2f496efa7763d9c905ecdba6.webp 480w, assets/optimized/34bacdd932397ec19ede04d4bdfd1fba4d4669346bb03edac3152ccb31bd1d9d.webp 960w, assets/originals/illustration-page/work-1d4d7f8557.jpg 2761w" sizes="(max-width:600px) 80vw, 39.2vw" alt="插圖作品 插圖51拷貝" width="2761" height="1748" loading="lazy" decoding="async"></figure>
 <figure class="illustration-artwork" data-work="IMG_3505.JPG" style="--art-x:57.5%;--art-y:29.046653144016226%;--art-width:42.5%;--art-height:12.931034482758621%"><img src="assets/originals/illustration-page/work-5f4325ebf4.jpg" srcset="assets/originals/illustration-page/work-5f4325ebf4.jpg 1200w" sizes="(max-width:600px) 80vw, 29.75vw" alt="插圖作品 IMG_3505" width="1200" height="900" loading="lazy" decoding="async"></figure>
-<figure class="illustration-artwork" data-work="IMG_5084.JPG" style="--art-x:0.0%;--art-y:45.030425963488845%;--art-width:53.5%;--art-height:21.703853955375255%"><img src="assets/generated/illustration-page/work-5709a621de-480.webp" srcset="assets/generated/illustration-page/work-5709a621de-480.webp 480w, assets/generated/illustration-page/work-5709a621de-960.webp 960w, assets/originals/illustration-page/work-5709a621de.jpg 2048w" sizes="(max-width:600px) 80vw, 37.45vw" alt="插圖作品 IMG_5084" width="2048" height="2048" loading="lazy" decoding="async"></figure>
-<figure class="illustration-artwork" data-work="448拷貝.png" style="--art-x:61.0%;--art-y:45.030425963488845%;--art-width:39.0%;--art-height:22.37975659229209%"><img src="assets/generated/illustration-page/work-2fcce1053f-480.webp" srcset="assets/generated/illustration-page/work-2fcce1053f-480.webp 480w, assets/generated/illustration-page/work-2fcce1053f-960.webp 960w, assets/optimized/2fcce1053f03f40a3c2fc1f019ba4dfb3e11ecc695d38119c7890472370ed2f6.webp 2480w" sizes="(max-width:600px) 80vw, 27.3vw" alt="插圖作品 448拷貝" width="2480" height="3508" loading="lazy" decoding="async"></figure>
-<figure class="illustration-artwork" data-work="插圖5.PNG" style="--art-x:0.0%;--art-y:69.1683569979716%;--art-width:48.0%;--art-height:27.53809330628803%"><img src="assets/generated/illustration-page/work-9050094fb7-480.webp" srcset="assets/generated/illustration-page/work-9050094fb7-480.webp 480w, assets/generated/illustration-page/work-9050094fb7-960.webp 960w, assets/optimized/9050094fb7857f6e4130d540a88a2cbcb171a12966a227e5d879604bd0313078.webp 3508w" sizes="(max-width:600px) 80vw, 33.6vw" alt="插圖作品 插圖5" width="3508" height="4961" loading="lazy" decoding="async"></figure>
-<figure class="illustration-artwork" data-work="488_3拷貝.png" style="--art-x:65.0%;--art-y:69.1683569979716%;--art-width:27.0%;--art-height:10.953346855983773%"><img src="assets/generated/illustration-page/work-cceb652ea8-480.webp" srcset="assets/generated/illustration-page/work-cceb652ea8-480.webp 480w, assets/generated/illustration-page/work-cceb652ea8-960.webp 960w, assets/optimized/cceb652ea88e056cd9e9e30024c739ac393d434dd06527046a28674216f310e9.webp 1748w" sizes="(max-width:600px) 80vw, 18.900000000000002vw" alt="插圖作品 488_3拷貝" width="1748" height="1748" loading="lazy" decoding="async"></figure>
-<figure class="illustration-artwork" data-work="488_1拷貝.png" style="--art-x:54.0%;--art-y:81.33874239350912%;--art-width:46.0%;--art-height:18.66125760649087%"><img src="assets/generated/illustration-page/work-37f1855c29-480.webp" srcset="assets/generated/illustration-page/work-37f1855c29-480.webp 480w, assets/generated/illustration-page/work-37f1855c29-960.webp 960w, assets/optimized/37f1855c29d1d3d67e629bad8d333add776194660faf33b588959ff949754784.webp 1748w" sizes="(max-width:600px) 80vw, 32.2vw" alt="插圖作品 488_1拷貝" width="1748" height="1748" loading="lazy" decoding="async"></figure>
+<figure class="illustration-artwork" data-work="IMG_5084.JPG" style="--art-x:0.0%;--art-y:45.030425963488845%;--art-width:53.5%;--art-height:21.703853955375255%"><img src="assets/optimized/80a31864fa2beb80f23a23c55de036dd3aaadf89873c7842c030391fa8d490d2.webp" srcset="assets/optimized/80a31864fa2beb80f23a23c55de036dd3aaadf89873c7842c030391fa8d490d2.webp 480w, assets/optimized/ff544aad1543669a80be36836e4f98926268a84beea2fccced0da28ec8f74680.webp 960w, assets/originals/illustration-page/work-5709a621de.jpg 2048w" sizes="(max-width:600px) 80vw, 37.45vw" alt="插圖作品 IMG_5084" width="2048" height="2048" loading="lazy" decoding="async"></figure>
+<figure class="illustration-artwork" data-work="448拷貝.png" style="--art-x:61.0%;--art-y:45.030425963488845%;--art-width:39.0%;--art-height:22.37975659229209%"><img src="assets/optimized/218ffa65d48a6d2b98d86b7c68efd199a6c2707a6da7621a1deec5d4856b6107.webp" srcset="assets/optimized/218ffa65d48a6d2b98d86b7c68efd199a6c2707a6da7621a1deec5d4856b6107.webp 480w, assets/optimized/3a2138c8a023c219e86e7310b6393c264ea77ad994363133e051adc23925374b.webp 960w, assets/optimized/54108a4cecf6d43bd1c6491435cfeec8cb326fabc9a2062944af1e2d38944f81.webp 2480w" sizes="(max-width:600px) 80vw, 27.3vw" alt="插圖作品 448拷貝" width="2480" height="3508" loading="lazy" decoding="async"></figure>
+<figure class="illustration-artwork" data-work="插圖5.PNG" style="--art-x:0.0%;--art-y:69.1683569979716%;--art-width:48.0%;--art-height:27.53809330628803%"><img src="assets/optimized/906816b74203f0356fc14b561e340ee36a8b7e5b63080fd01ecc1fabd5cedaa4.webp" srcset="assets/optimized/906816b74203f0356fc14b561e340ee36a8b7e5b63080fd01ecc1fabd5cedaa4.webp 480w, assets/optimized/41c5027eaef7406855c15b789899244abdd3d28c54589019ffa3a3950a2b8f99.webp 960w, assets/optimized/e1f2a504f132afe821e73c4f1ade019b2012188e86ad6173c9b7af8460503d90.webp 3508w" sizes="(max-width:600px) 80vw, 33.6vw" alt="插圖作品 插圖5" width="3508" height="4961" loading="lazy" decoding="async"></figure>
+<figure class="illustration-artwork" data-work="488_3拷貝.png" style="--art-x:65.0%;--art-y:69.1683569979716%;--art-width:27.0%;--art-height:10.953346855983773%"><img src="assets/optimized/d07d612b8ae02044a011dd67db72d1157259d9301fdd9d7460e554e08758d161.webp" srcset="assets/optimized/d07d612b8ae02044a011dd67db72d1157259d9301fdd9d7460e554e08758d161.webp 480w, assets/optimized/1bb5c348e7b8f289aa3e851baa509ae1e1945e3849a06832b418be881009985b.webp 960w, assets/optimized/2144071e15a0087ffa38c047493e278bf54251129d82d37b495e7043c6451572.webp 1748w" sizes="(max-width:600px) 80vw, 18.900000000000002vw" alt="插圖作品 488_3拷貝" width="1748" height="1748" loading="lazy" decoding="async"></figure>
+<figure class="illustration-artwork" data-work="488_1拷貝.png" style="--art-x:54.0%;--art-y:81.33874239350912%;--art-width:46.0%;--art-height:18.66125760649087%"><img src="assets/optimized/607e76bfddc6c0d7cd42676a522ca01c9bc828e5d887ff093fa9625f9663cbab.webp" srcset="assets/optimized/607e76bfddc6c0d7cd42676a522ca01c9bc828e5d887ff093fa9625f9663cbab.webp 480w, assets/optimized/3e8930c35705a491c0cda058cfaded4b3bbedde4712db5503634aa556d12ccc7.webp 960w, assets/optimized/b8743df4f0c271c012437b76a9b5cb5c7838b0729491613bbea04e8901640539.webp 1748w" sizes="(max-width:600px) 80vw, 32.2vw" alt="插圖作品 488_1拷貝" width="1748" height="1748" loading="lazy" decoding="async"></figure>
 
 
 
@@ -290,21 +300,22 @@
         <div id="contact-email"></div>
       </section>
     </main>
-    <script src="illustrations.js?v=8a62fc1256f5"></script>
-    <script src="illustration-artworks.js?v=8c7c5034c067"></script>
-    <script src="settings.js?v=0020fad5713d"></script>
+    <script src="illustrations.js?v=d86ab53ca68f"></script>
+    <script src="illustration-artworks.js?v=2ddc24b0353d"></script>
+    <script src="settings.js?v=5f8d05cb49b6"></script>
     <script src="render-cache.js?v=61b1f8095bf0"></script>
     <script src="startup-cache.js?v=b32bfdc67155"></script>
     <script src="fur.js?v=5d9c2278b52d"></script>
     <script src="ip.js?v=eeab341fbfb1"></script>
-    <script src="stickers.js?v=70f49939ce5d"></script>
+    <script src="stickers.js?v=a2c99f3faa65"></script>
     <script src="portals.js?v=b76ba4fe6290"></script>
-    <script src="ip-portfolio.js?v=ab5349149462"></script>
-    <script src="illustration-page.js?v=f4788643df21"></script>
-    <script src="home-introductions.js?v=9866af138c50"></script>
+    <script src="ip-portfolio.js?v=1cfec89eb375"></script>
+    <script src="illustration-page.js?v=bebdff7f353b"></script>
+    <script src="home-introductions.js?v=65d10d713e36"></script>
     <script src="home-profile.js?v=e5c73fc54a98"></script>
-    <script src="materials-content.js?v=9bfb12d209d0"></script>
+    <script src="materials-content.js?v=4873a93c4a6b"></script>
     <script src="materials-page.js?v=187a0b29ea71"></script>
-    <script src="app.js?v=d54147be0638"></script>
+    <script src="app.js?v=1ffa36b7a364"></script>
+  <script src="site-cache-register.js?v=c64fdc2e20a9"></script>
   </body>
 </html>

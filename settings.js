@@ -4,7 +4,7 @@ window.portfolioSettings = Object.freeze({
   illustrationPage: Object.freeze({
     zoom: 1.04,             // 成品碰到／鍵盤聚焦時微放大 4%；外層版面固定。
     zoomMs: 180,            // 微放大與復位時間，單位毫秒。
-    preloadPixels: 350,     // 距離畫面 350 像素才準備下一批作品。
+    preloadPixels: 1400,    // 提前約一至兩個畫面準備作品，避免滑到才下載。
     artworks: window.portfolioIllustrationPage,
     // 精選作品只在自己的燈箱顯示；正文照使用者提供，不補寫創作設定。
     featured: Object.freeze({
@@ -12,9 +12,9 @@ window.portfolioSettings = Object.freeze({
         title: "萬聖節 × 聖誕節｜節日合體卡片",
         concept: "這件作品原先是為了交換卡片而創作，但因製作時間有限，於是將萬聖節與聖誕節結合在同一張卡片中，這張圖想融合兩種節日溫馨又詭異的氛圍，形成跨節日的創作主題。",
         sketches: Object.freeze([
-          { src: "assets/optimized/90aa28981194d3af14c88b560ccac1785776c8e65ccea9076e982a5f74199846.webp", name: "插圖27 2.PNG", width: 1181, height: 1748 },
-          { src: "assets/optimized/280f86a20dc386050a89e6f78926192742fd842ff314e3e99bcfbc4d636cc5af.webp", name: "插圖27 3.PNG", width: 1748, height: 1181 },
-          { src: "assets/optimized/2940890933903fffc4d5db9de96fcfcb1d4fa763ed35242bebac073e0584d0da.webp", name: "插圖27.PNG", width: 1748, height: 1181, selected: true },
+          { src: "assets/optimized/90f7126cbfa3dc0817411f59527d74731ebc2986a14a0d51d156bf7647bd60dd.webp", name: "插圖27 2.PNG", width: 1181, height: 1748 },
+          { src: "assets/optimized/71975ace6d46cde19db9db19817aa44fe187b4ffad1dc07df32edc49f783329d.webp", name: "插圖27 3.PNG", width: 1748, height: 1181 },
+          { src: "assets/optimized/45e3910e699bcb470c0e229f3d8684e9dcbcd491b5874f2f1bed149da5d2429f.webp", name: "插圖27.PNG", width: 1748, height: 1181, selected: true },
         ].map(Object.freeze)),
       }),
       "插圖51拷貝.jpg": Object.freeze({
@@ -35,9 +35,9 @@ window.portfolioSettings = Object.freeze({
       zoomMs: 180,             // 放大／復位時間，毫秒；與貼圖一致。
       arrows: "assets/generated/portal/arrows.svg",
       cards: Object.freeze([
-        { name: "contact", label: "聯絡我", route: "mailto:Jerky628@gmail.com", src: "assets/optimized/3e23883ee0bf2df750012567063d3a386549543e596e98bac8167f5d023a661a.webp", canvas: [2048, 2048], viewBox: [300, 311, 1362, 1544], box: [179, 498, 497, 564] },
-        { name: "ip", label: "IP", route: "/ip", src: "assets/optimized/d88f644fb5a51d911a874331010c311fd1b604cbb811e49b84e3349c57750e31.webp", canvas: [2048, 2048], viewBox: [231, 365, 1493, 1326], box: [987, 540, 510, 453] },
-        { name: "materials", label: "材料科學", route: "/materials", src: "assets/optimized/668cf07d427a1bacc12ce9d9bc939957b4f61467a2c3f543ebfe9495cd89ecbb.webp", canvas: [2048, 2048], viewBox: [213, 352, 1425, 1452], box: [1808, 499, 567, 578] },
+        { name: "contact", label: "聯絡我", route: "mailto:Jerky628@gmail.com", src: "assets/optimized/83cd871ee3e71b0949af9135abad1e7735a6e512210a9fba61092261107502fb.webp", canvas: [2048, 2048], viewBox: [300, 311, 1362, 1544], box: [179, 498, 497, 564] },
+        { name: "ip", label: "IP", route: "/ip", src: "assets/optimized/b8ab6ee1ca745e005c21afb236f6224cfbcbf1a31b1684ab1c3e88f756a8c13c.webp", canvas: [2048, 2048], viewBox: [231, 365, 1493, 1326], box: [987, 540, 510, 453] },
+        { name: "materials", label: "材料科學", route: "/materials", src: "assets/optimized/55bbe6fee067b2d574c1acf8fa1c7a8a2a7f7db6f67fb7c424f8e2b3bf5e8197.webp", canvas: [2048, 2048], viewBox: [213, 352, 1425, 1452], box: [1808, 499, 567, 578] },
       ].map(Object.freeze)),
     }),
   }),
@@ -62,16 +62,16 @@ window.portfolioSettings = Object.freeze({
     marqueePixelsPerSecond: 28, // 插圖橫向移動速度：每秒畫面像素，數字越小越慢。
     zoom: 1.45,                // 碰到／輕點插圖後的放大倍率；固定容器避免閃爍。
     zoomMs: 180,               // 放大與復位時間，單位為毫秒。
-    preloadPixels: 400,        // 提前載入下一段跑馬燈圖片的距離，單位為畫面像素。
+    preloadPixels: 1400,       // 提前準備下一個畫面的插圖與周邊。
     portals: Object.freeze({
       preloadPixels: 250,      // 接近傳送門時才載入牌子，不增加首頁首屏圖片。
       zoom: 1.06,              // 沿用貼圖按鈕的 6% 微放大。
       zoomMs: 180,             // 放大／復位時間，毫秒；與貼圖一致。
       arrows: "assets/generated/portal/arrows.svg",
       cards: Object.freeze([
-        { name: "contact", label: "聯絡我", route: "mailto:Jerky628@gmail.com", src: "assets/optimized/3e23883ee0bf2df750012567063d3a386549543e596e98bac8167f5d023a661a.webp", canvas: [2048, 2048], viewBox: [300, 311, 1362, 1544], box: [179, 498, 497, 564] },
-        { name: "illustration", label: "插圖", route: "/illustration", src: "assets/optimized/893ddb4cc6090e383e172c07b1282041e7724ca0179360083172916b189fe5ee.webp", canvas: [2048, 2048], viewBox: [320, 284, 1307, 1609], box: [987, 450, 510, 627] },
-        { name: "materials", label: "材料科學", route: "/materials", src: "assets/optimized/668cf07d427a1bacc12ce9d9bc939957b4f61467a2c3f543ebfe9495cd89ecbb.webp", canvas: [2048, 2048], viewBox: [213, 352, 1425, 1452], box: [1808, 499, 567, 578] },
+        { name: "contact", label: "聯絡我", route: "mailto:Jerky628@gmail.com", src: "assets/optimized/83cd871ee3e71b0949af9135abad1e7735a6e512210a9fba61092261107502fb.webp", canvas: [2048, 2048], viewBox: [300, 311, 1362, 1544], box: [179, 498, 497, 564] },
+        { name: "illustration", label: "插圖", route: "/illustration", src: "assets/optimized/ce642253274c6215b43ce4addc07efe33c32b59960b251f94cad547d529db751.webp", canvas: [2048, 2048], viewBox: [320, 284, 1307, 1609], box: [987, 450, 510, 627] },
+        { name: "materials", label: "材料科學", route: "/materials", src: "assets/optimized/55bbe6fee067b2d574c1acf8fa1c7a8a2a7f7db6f67fb7c424f8e2b3bf5e8197.webp", canvas: [2048, 2048], viewBox: [213, 352, 1425, 1452], box: [1808, 499, 567, 578] },
       ].map(Object.freeze)),
     }),
     illustrations: window.portfolioIllustrations, // 縮圖與原檔對照另見 illustrations.js。
@@ -79,22 +79,22 @@ window.portfolioSettings = Object.freeze({
       zoom: 1.06,              // 圓圈與首圖一起微微放大 6%，固定互動容器避免閃爍。
       zoomMs: 180,             // 放大及對話框淡入時間（毫秒）。
       pixelsPerSecond: 18,     // 長條預覽由上往下移動的速度；只在顯示時播放。
-      preloadPixels: 250,     // 首圖接近可見範圍時才載入；預覽等首次碰到才載入。
-      dialog: "assets/optimized/ccdc4bd81dcc8e0022ac2bd493377895e8bbb8a919858d433406df265a747351.webp", // 使用原始透明對話框，不重畫。
+      preloadPixels: 1400,    // 接近前先準備首圖與預覽，避免首次滑入才下載。
+      dialog: "assets/optimized/806239f8a42d9fdec4a1dfd5ab51bcde4411ea982e3697e0967957bf3533a4f2.webp", // 使用原始透明對話框，不重畫。
     }),
     // 編號對應原資料夾；填入真實 https 網址後，首圖會自動成為外部連結。
     stickers: Object.freeze([
-      { id: "1", src: "assets/generated/stickers/cover-1-960.webp", preview: "assets/originals/stickers/preview-1.jpg", previewWidth: 1080, previewHeight: 2163, alt: "綠綠的貼圖 1", url: "https://store.line.me/stickershop/product/31474161/zh-Hant" },
-      { id: "2", src: "assets/generated/stickers/cover-2-960.webp", preview: "assets/originals/stickers/preview-2.jpg", previewWidth: 1079, previewHeight: 2734, alt: "綠綠的貼圖 2", url: "https://store.line.me/stickershop/product/32869853/zh-Hant" },
+      { id: "1", src: "assets/optimized/65ab33e8c8ed6713bc68de7adeae0eb5f126fdd498dd3ff9121e3d05b1fa0156.webp", preview: "assets/originals/stickers/preview-1.jpg", previewWidth: 1080, previewHeight: 2163, alt: "綠綠的貼圖 1", url: "https://store.line.me/stickershop/product/31474161/zh-Hant" },
+      { id: "2", src: "assets/optimized/edf1282558dcc0f42b6f4b36150260d48577a45eb9477918e1d90819dcc93778.webp", preview: "assets/originals/stickers/preview-2.jpg", previewWidth: 1079, previewHeight: 2734, alt: "綠綠的貼圖 2", url: "https://store.line.me/stickershop/product/32869853/zh-Hant" },
     ].map(Object.freeze)),
   }),
   homeIntroductions: Object.freeze({
     delayMs: 28,
-    frame: "assets/optimized/735b5fe4f269143f91af7ae3eeaaff62a98e3c619e8a7a75439b4ce1f72759b9.webp",
+    frame: "assets/optimized/c59fc8bcbc95bff0b0df702fd9ab256efdb25e0aedd97533a42f621c66e49c7b.webp",
     cards: Object.freeze([
-      { name: "ip", text: "綠綠的與棉花狗\n文創插圖・周邊", image: "assets/originals/home-introductions/ip.jpg", imageAlt: "綠綠的雨中原創插圖", box: [0.395,0.45,0.218] },
-      { name: "illustration", text: "原創角色\n日常練習與大圖\n之繪畫過程", image: "assets/optimized/9baef55bae94a7b892dd647b942cf4ed646028afb9979c928cea40fd430b3812.webp", imageAlt: "萬聖節與聖誕節的雙人與餅乾人插畫", box: [0.678,0.29,0.214] },
-      { name: "materials", text: "選修、儀器技能\n生醫 × 電性專題\n水凝膠製程", image: "assets/optimized/6bccbddce6e6c420c5cc29fa68f83c8eac63125947cb68295918f64c6dcd19ff.webp", imageAlt: "水凝膠與 PDMS 製程示意圖", box: [0.46,0.46,0.218] },
+      { name: "ip", text: "綠綠的與棉花狗\n文創插圖・周邊", image: "assets/originals/home-introductions/ip.jpg", variants: [{"width":480,"src":"assets/optimized/914623dd6f760d388a9a5f5110e4043b9d0d7955192029a43a05f92ee2b6e874.webp"},{"width":960,"src":"assets/optimized/d26c4c52095a13806d054ea443637b5f0b31947bb864e0fcd114a4b64cceb00b.webp"}], imageAlt: "綠綠的雨中原創插圖", box: [0.395,0.45,0.218] },
+      { name: "illustration", text: "原創角色\n日常練習與大圖\n之繪畫過程", image: "assets/optimized/ec2d56fd29feb365623939179d3f4234ca486af907ce17acc5d702790fb13f4a.webp", variants: [{"width":480,"src":"assets/optimized/3452f6fb436ad7e8e88f091d3efe5e5f145c3a6286ee41187a08c631188653d8.webp"},{"width":960,"src":"assets/optimized/bb8816c2a052817d6cf047c01a820725073b05560204e78fb70e6566a8a165c3.webp"}], imageAlt: "萬聖節與聖誕節的雙人與餅乾人插畫", box: [0.678,0.29,0.214] },
+      { name: "materials", text: "選修、儀器技能\n生醫 × 電性專題\n水凝膠製程", image: "assets/optimized/bbfbc7ff6249d9cc9560b96a9aae23f1181ca6c7c019c06a5e40929daf99cd3e.webp", variants: [{"width":480,"src":"assets/generated/home-dialog/materials-480.webp"},{"width":960,"src":"assets/generated/home-dialog/materials-960.webp"}], imageAlt: "水凝膠與 PDMS 製程示意圖", box: [0.46,0.46,0.218] },
     ].map(Object.freeze)),
   }),
   motion: Object.freeze({

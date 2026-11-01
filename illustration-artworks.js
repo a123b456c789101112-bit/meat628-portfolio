@@ -2,14 +2,14 @@
 window.portfolioIllustrationPage=Object.freeze([
   {
     "name": "插圖27.PNG",
-    "src": "assets/generated/illustration-page/work-9baef55bae-480.webp",
+    "src": "assets/optimized/3452f6fb436ad7e8e88f091d3efe5e5f145c3a6286ee41187a08c631188653d8.webp",
     "variants": [
       {
-        "src": "assets/generated/illustration-page/work-9baef55bae-480.webp",
+        "src": "assets/optimized/3452f6fb436ad7e8e88f091d3efe5e5f145c3a6286ee41187a08c631188653d8.webp",
         "width": 480
       },
       {
-        "src": "assets/generated/illustration-page/work-9baef55bae-960.webp",
+        "src": "assets/optimized/bb8816c2a052817d6cf047c01a820725073b05560204e78fb70e6566a8a165c3.webp",
         "width": 960
       }
     ],
@@ -22,18 +22,18 @@ window.portfolioIllustrationPage=Object.freeze([
       675.629
     ],
     "alt": "插圖作品 插圖27",
-    "originalSrc": "assets/optimized/9baef55bae94a7b892dd647b942cf4ed646028afb9979c928cea40fd430b3812.webp"
+    "originalSrc": "assets/optimized/ec2d56fd29feb365623939179d3f4234ca486af907ce17acc5d702790fb13f4a.webp"
   },
   {
     "name": "插圖51拷貝.jpg",
-    "src": "assets/generated/illustration-page/work-1d4d7f8557-480.webp",
+    "src": "assets/optimized/e70cf6ebc98e2b2de2f39a022b19527f90f924de2f496efa7763d9c905ecdba6.webp",
     "variants": [
       {
-        "src": "assets/generated/illustration-page/work-1d4d7f8557-480.webp",
+        "src": "assets/optimized/e70cf6ebc98e2b2de2f39a022b19527f90f924de2f496efa7763d9c905ecdba6.webp",
         "width": 480
       },
       {
-        "src": "assets/generated/illustration-page/work-1d4d7f8557-960.webp",
+        "src": "assets/optimized/34bacdd932397ec19ede04d4bdfd1fba4d4669346bb03edac3152ccb31bd1d9d.webp",
         "width": 960
       }
     ],
@@ -70,14 +70,14 @@ window.portfolioIllustrationPage=Object.freeze([
   },
   {
     "name": "IMG_5084.JPG",
-    "src": "assets/generated/illustration-page/work-5709a621de-480.webp",
+    "src": "assets/optimized/80a31864fa2beb80f23a23c55de036dd3aaadf89873c7842c030391fa8d490d2.webp",
     "variants": [
       {
-        "src": "assets/generated/illustration-page/work-5709a621de-480.webp",
+        "src": "assets/optimized/80a31864fa2beb80f23a23c55de036dd3aaadf89873c7842c030391fa8d490d2.webp",
         "width": 480
       },
       {
-        "src": "assets/generated/illustration-page/work-5709a621de-960.webp",
+        "src": "assets/optimized/ff544aad1543669a80be36836e4f98926268a84beea2fccced0da28ec8f74680.webp",
         "width": 960
       }
     ],
@@ -94,14 +94,14 @@ window.portfolioIllustrationPage=Object.freeze([
   },
   {
     "name": "448拷貝.png",
-    "src": "assets/generated/illustration-page/work-2fcce1053f-480.webp",
+    "src": "assets/optimized/218ffa65d48a6d2b98d86b7c68efd199a6c2707a6da7621a1deec5d4856b6107.webp",
     "variants": [
       {
-        "src": "assets/generated/illustration-page/work-2fcce1053f-480.webp",
+        "src": "assets/optimized/218ffa65d48a6d2b98d86b7c68efd199a6c2707a6da7621a1deec5d4856b6107.webp",
         "width": 480
       },
       {
-        "src": "assets/generated/illustration-page/work-2fcce1053f-960.webp",
+        "src": "assets/optimized/3a2138c8a023c219e86e7310b6393c264ea77ad994363133e051adc23925374b.webp",
         "width": 960
       }
     ],
@@ -114,18 +114,18 @@ window.portfolioIllustrationPage=Object.freeze([
       551.661
     ],
     "alt": "插圖作品 448拷貝",
-    "originalSrc": "assets/optimized/2fcce1053f03f40a3c2fc1f019ba4dfb3e11ecc695d38119c7890472370ed2f6.webp"
+    "originalSrc": "assets/optimized/54108a4cecf6d43bd1c6491435cfeec8cb326fabc9a2062944af1e2d38944f81.webp"
   },
   {
     "name": "插圖5.PNG",
-    "src": "assets/generated/illustration-page/work-9050094fb7-480.webp",
+    "src": "assets/optimized/906816b74203f0356fc14b561e340ee36a8b7e5b63080fd01ecc1fabd5cedaa4.webp",
     "variants": [
       {
-        "src": "assets/generated/illustration-page/work-9050094fb7-480.webp",
+        "src": "assets/optimized/906816b74203f0356fc14b561e340ee36a8b7e5b63080fd01ecc1fabd5cedaa4.webp",
         "width": 480
       },
       {
-        "src": "assets/generated/illustration-page/work-9050094fb7-960.webp",
+        "src": "assets/optimized/41c5027eaef7406855c15b789899244abdd3d28c54589019ffa3a3950a2b8f99.webp",
         "width": 960
       }
     ],
@@ -138,18 +138,18 @@ window.portfolioIllustrationPage=Object.freeze([
       678.814
     ],
     "alt": "插圖作品 插圖5",
-    "originalSrc": "assets/optimized/9050094fb7857f6e4130d540a88a2cbcb171a12966a227e5d879604bd0313078.webp"
+    "originalSrc": "assets/optimized/e1f2a504f132afe821e73c4f1ade019b2012188e86ad6173c9b7af8460503d90.webp"
   },
   {
     "name": "488_3拷貝.png",
-    "src": "assets/generated/illustration-page/work-cceb652ea8-480.webp",
+    "src": "assets/optimized/d07d612b8ae02044a011dd67db72d1157259d9301fdd9d7460e554e08758d161.webp",
     "variants": [
       {
-        "src": "assets/generated/illustration-page/work-cceb652ea8-480.webp",
+        "src": "assets/optimized/d07d612b8ae02044a011dd67db72d1157259d9301fdd9d7460e554e08758d161.webp",
         "width": 480
       },
       {
-        "src": "assets/generated/illustration-page/work-cceb652ea8-960.webp",
+        "src": "assets/optimized/1bb5c348e7b8f289aa3e851baa509ae1e1945e3849a06832b418be881009985b.webp",
         "width": 960
       }
     ],
@@ -162,18 +162,18 @@ window.portfolioIllustrationPage=Object.freeze([
       270.0
     ],
     "alt": "插圖作品 488_3拷貝",
-    "originalSrc": "assets/optimized/cceb652ea88e056cd9e9e30024c739ac393d434dd06527046a28674216f310e9.webp"
+    "originalSrc": "assets/optimized/2144071e15a0087ffa38c047493e278bf54251129d82d37b495e7043c6451572.webp"
   },
   {
     "name": "488_1拷貝.png",
-    "src": "assets/generated/illustration-page/work-37f1855c29-480.webp",
+    "src": "assets/optimized/607e76bfddc6c0d7cd42676a522ca01c9bc828e5d887ff093fa9625f9663cbab.webp",
     "variants": [
       {
-        "src": "assets/generated/illustration-page/work-37f1855c29-480.webp",
+        "src": "assets/optimized/607e76bfddc6c0d7cd42676a522ca01c9bc828e5d887ff093fa9625f9663cbab.webp",
         "width": 480
       },
       {
-        "src": "assets/generated/illustration-page/work-37f1855c29-960.webp",
+        "src": "assets/optimized/3e8930c35705a491c0cda058cfaded4b3bbedde4712db5503634aa556d12ccc7.webp",
         "width": 960
       }
     ],
@@ -186,6 +186,6 @@ window.portfolioIllustrationPage=Object.freeze([
       460.0
     ],
     "alt": "插圖作品 488_1拷貝",
-    "originalSrc": "assets/optimized/37f1855c29d1d3d67e629bad8d333add776194660faf33b588959ff949754784.webp"
+    "originalSrc": "assets/optimized/b8743df4f0c271c012437b76a9b5cb5c7838b0729491613bbea04e8901640539.webp"
   }
 ].map(Object.freeze));

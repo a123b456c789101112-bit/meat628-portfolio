@@ -10,6 +10,7 @@ window.createStickerCollection = ({ root, settings, artworks, reduceMotion }) =>
 
   function loadCover(entry) {
     if (!visible || entry.cover.hasAttribute('src')) return;
+    entry.cover.dataset.loaded='loading';
     entry.cover.src = source(entry.art.src);
     entry.cover.decode().then(() => { entry.cover.dataset.loaded = 'true'; }).catch(() => {
       entry.cover.dataset.loaded = 'error';
@@ -18,7 +19,7 @@ window.createStickerCollection = ({ root, settings, artworks, reduceMotion }) =>
   }
   function sync() {
     for (const entry of entries) {
-      const show = visible && inView && entry === active;
+      const show = visible && inView && entry === active && entry.ready;
       entry.slot.dataset.active = String(show);
       entry.control.setAttribute('aria-expanded', String(show));
       entry.bubble.hidden = !show;
@@ -47,8 +48,9 @@ window.createStickerCollection = ({ root, settings, artworks, reduceMotion }) =>
     sync();
   }
   function prepare(entry) {
-    if (entry.preparing) return;
+    if (entry.preparing || entry.ready) return;
     entry.preparing = true;
+    entry.track.replaceChildren();
     entry.frame.src = source(settings.dialog);
     const copies = [0, 1].map(copy => {
       const image = new Image(); image.width = entry.art.previewWidth; image.height = entry.art.previewHeight;
@@ -59,7 +61,7 @@ window.createStickerCollection = ({ root, settings, artworks, reduceMotion }) =>
     Promise.all([entry.frame.decode(), ...copies.map(image => image.decode())]).then(() => {
       entry.ready = true; entry.bubble.dataset.loaded = 'true'; measure(entry); sync();
     }).catch(() => {
-      entry.bubble.dataset.loaded = 'error'; console.error('貼圖預覽讀取失敗', entry.art.id);
+      entry.preparing=false;entry.bubble.dataset.loaded = 'error'; console.error('貼圖預覽讀取失敗', entry.art.id);
     });
   }
   function select(entry) {
@@ -69,7 +71,10 @@ window.createStickerCollection = ({ root, settings, artworks, reduceMotion }) =>
   }
 
   const nearby = new IntersectionObserver(changes => {
-    for (const change of changes) if (change.isIntersecting) loadCover(entries.find(entry => entry.slot === change.target));
+    if(!visible) return;
+    for (const change of changes) if (change.isIntersecting) {
+      const entry=entries.find(entry => entry.slot === change.target);loadCover(entry);prepare(entry);
+    }
   }, { rootMargin: `${settings.preloadPixels}px 0px` });
 
   for (const art of artworks) {
@@ -112,12 +117,12 @@ window.createStickerCollection = ({ root, settings, artworks, reduceMotion }) =>
     for (const entry of entries) if (entry.animation && reduceMotion.matches) entry.animation.currentTime = entry.duration;
     sync();
   });
-  return { setVisible(show) {
+  return { preload() { if(visible) for(const entry of entries) {loadCover(entry);prepare(entry);} }, setVisible(show) {
     visible = show;
     if (!show) active = null;
     else for (const entry of entries) {
       const box = entry.slot.getBoundingClientRect();
-      if (box.height && box.bottom > -settings.preloadPixels && box.top < innerHeight + settings.preloadPixels) loadCover(entry);
+      if (box.height && box.bottom > -settings.preloadPixels && box.top < innerHeight + settings.preloadPixels) { loadCover(entry);prepare(entry); }
     }
     sync();
   } };

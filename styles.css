@@ -3,7 +3,7 @@
   --scene-ratio: 2500 / 1406;
   --sky-color: #b6e7df;
   /* 64×64 原創手形；點擊熱點為最高的中指指尖（x=32、y=10）。 */
-  --hand-cursor: url("assets/optimized/a0a4b5fd9c206d71ae3813bcd24b9fdbbb5cf34373c4fdab20de7e2339756dbc.webp") 32 10, auto;
+  --hand-cursor: url("assets/optimized/220a78846c3cb440edb746145f2c58da1712deb31331cb11ef1930938110f59e.webp") 32 10, auto;
 }
 
 * { box-sizing: border-box; }
@@ -28,6 +28,12 @@ body {
 }
 
 .home-viewport[hidden] { display: none; }
+
+/* 背景、牌子與遮擋準備完成後同一格顯示，避免大圖逐行補畫。 */
+.home-art-preparing :is(.home-background, #home) { visibility: hidden; }
+
+/* 圖片下載／解碼期間保留原尺寸，完成後才完整繪出，不做掃描式補圖。 */
+:is(.gallery-paper img, .merchandise-photos img, .sticker-disc img, .illustration-artwork img)[data-loaded="loading"] { visibility: hidden; }
 
 .home-background {
   position: absolute;
