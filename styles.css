@@ -655,7 +655,7 @@ body {
 .materials-viewport[hidden], .materials-panel[hidden], .materials-section-nav button[hidden] { display: none; }
 .materials-tabs { position: sticky; top: 0; z-index: 15; isolation: isolate; background: var(--sky-color); padding: 14px 32px 14px 116px; }
 .materials-tabs::before { content: ''; position: absolute; inset: 0; z-index: -1; background: var(--materials-cream); filter: url(#ink-edge); clip-path: inset(10% 0); }
-.materials-tabs [role="tablist"] { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); max-width: 1120px; margin: auto; }
+.materials-tabs [role="tablist"] { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); max-width: 1120px; margin: auto; }
 .materials-tab { min-height: 80px; padding: 14px 12px; border: 0; background: none; color: #86a269; font: 600 clamp(25px,3.5vw,42px)/1.4 system-ui,sans-serif; cursor: var(--hand-cursor); }
 .materials-tab[aria-selected="true"] { color: #315b38; }
 .materials-tab:focus-visible, .materials-panel:focus-visible, .materials-table-window:focus-visible, .materials-figure__link:focus-visible { outline: 2px solid #315b38; outline-offset: 4px; }
@@ -798,3 +798,11 @@ body {
  .illustration-section-nav { top: max(8px,env(safe-area-inset-top)); }
  .illustration-section-nav button { height: 36px; font-size: 16px; }
 }
+
+/* 材料服務分頁沿用作品頁面的米色服務卡片。 */
+.materials-services .materials-heading { text-align: center; }
+.materials-services .materials-heading h1 { color: #a4b99b; text-align: center; font-weight: 700; }
+.materials-services .ip-service { display: grid; grid-template-rows: auto 1fr; }
+.materials-services .ip-service p { align-self: center; }
+.materials-services .materials-heading h1 { margin-inline: auto; }
+@media (max-width:600px) { .materials-tab { min-width: 0; font-size: clamp(16px,4vw,22px); white-space: nowrap; } }

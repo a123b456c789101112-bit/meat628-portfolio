@@ -45,6 +45,17 @@ window.createMaterialsPage = ({root,content,portalSettings,illustrationPortal,re
     if(data.subtitle)heading.append(element('p','materials-subtitle',data.subtitle));
     if(data.metadata){const meta=element('div','materials-metadata');data.metadata.forEach(text=>meta.append(element('p','',text)));heading.append(meta);}
     panel.append(heading);const sections=[],buttons=[];
+    if(data.services) {
+      panel.classList.add('materials-services');
+      const grid=element('div','ip-services-grid');
+      for(const [serviceIndex,service] of data.services.entries()) {
+        const card=element('article','ip-service'),title=element('h3','',service.title),description=element('p');
+        title.id=`materials-service-${serviceIndex}-title`;card.setAttribute('aria-labelledby',title.id);
+        service.lines.forEach((line,lineIndex)=>{if(lineIndex)description.append(document.createElement('br'));description.append(document.createTextNode(line));});
+        card.append(title,description);grid.append(card);
+      }
+      panel.append(grid);
+    }
     for(const part of data.sections) {
       const section=element('section','materials-section');section.id=`materials-${data.id}-${part.id}`;section.setAttribute('aria-labelledby',section.id+'-title');
       const title=element('h2','',part.title);title.id=section.id+'-title';section.append(title);part.blocks.forEach(block=>section.append(renderBlock(block)));panel.append(section);sections.push(section);buttons.push(makeNav(section.id,part.title,part.navLabel));
