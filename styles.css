@@ -815,3 +815,5 @@ body {
  .home-link { width: 36px; height: 36px; top: max(8px,env(safe-area-inset-top)); }
 }
 body:has(#materials-viewport:not([hidden])) .home-link { top: var(--materials-home-top,18px); }
+/* 縮小房子時維持約 2.2px 的墨線，與首頁社群圖示的筆畫一致。 */
+.home-link svg path { stroke-width: 2.2px; vector-effect: non-scaling-stroke; }
