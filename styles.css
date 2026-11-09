@@ -806,3 +806,12 @@ body {
 .materials-services .ip-service p { align-self: center; }
 .materials-services .materials-heading h1 { margin-inline: auto; }
 @media (max-width:600px) { .materials-tab { min-width: 0; font-size: clamp(16px,4vw,22px); white-space: nowrap; } }
+/* 回首頁圖示縮小，與導覽按鈕的中心線對齊。 */
+.home-link { width: 40px; height: 40px; top: max(18px,env(safe-area-inset-top)); }
+@media (max-width:600px) {
+ .home-link { width: 32px; height: 32px; top: calc(max(8px,env(safe-area-inset-top)) + 2px); }
+}
+@media (max-height:650px) and (min-width:601px) {
+ .home-link { width: 36px; height: 36px; top: max(8px,env(safe-area-inset-top)); }
+}
+body:has(#materials-viewport:not([hidden])) .home-link { top: var(--materials-home-top,18px); }

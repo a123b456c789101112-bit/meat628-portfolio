@@ -83,6 +83,9 @@ window.createMaterialsPage = ({root,content,portalSettings,illustrationPortal,re
   const observer=new IntersectionObserver(entries=>{for(const entry of entries)if(entry.isIntersecting)hydrate(entry.target);},{rootMargin:'350px 0px'});images.forEach(image=>observer.observe(image));
   function updateNavigation() {
     frame=0;if(!visible)return;
+    const tabBounds=root.querySelector('.materials-tabs').getBoundingClientRect();
+    const home=document.getElementById('home-link');
+    document.documentElement.style.setProperty('--materials-home-top',`${tabBounds.top+(tabBounds.height-home.offsetHeight)/2}px`);
     const view=views[selected],targets=[...view.sections,portalSection],buttons=[...view.buttons,portalButton];
     const line=root.querySelector('.materials-tabs').getBoundingClientRect().bottom+innerHeight*.16;
     let active=0;targets.forEach((section,index)=>{if(section.getBoundingClientRect().top<=line)active=index;});
