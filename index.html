@@ -18,7 +18,7 @@
       const sources=route==='/ip'?["assets/optimized/058a39d3969368eb3e4829151b7b8051e97d648e07dd51801ca43175f75e352a.webp", "assets/optimized/ef52352cfb2dc2a32364cc473c145b930a42d0aecf156d05f89c3ff9fc53e8bb.webp", "assets/optimized/e973f23daa3c8dba63fded1003da3b9cd7bc5f505b18b9b545417f44c1b043d9.webp", "assets/optimized/55226ea59ae0a6cb0b76bf85949ce5a8e42a6e00064e81f4310be7314ea26c1c.webp", "assets/optimized/0dd7998a3def085e7eae17bf80828f7b18add6249d6b7342c098cd139e00da1a.webp", "assets/optimized/0a7cbb403df68b3c2ef93e5743482c3a580f723b1088bb3848b5e71250c32804.webp"]:route==='/'?["assets/optimized/fb9694c743b95bca476851fddd7d3d0e98d9698d5ca3030caac87f0358b32438.webp"]:[];
       for(const href of sources){const link=document.createElement('link');link.rel='preload';link.as='image';link.href=href;link.fetchPriority='high';document.head.append(link);}
     })();</script>
-    <link rel="stylesheet" href="styles.css?v=9c9fe7a93b80">
+    <link rel="stylesheet" href="styles.css?v=50260aae36b4">
 <meta property="og:type" content="website">
 <meta property="og:title" content="個人作品集｜Materials × Creative Design">
 <meta property="og:description" content="材料科學、插畫創作與 IP 企劃的個人作品集。">
@@ -209,6 +209,23 @@
           </figure>
         </div>
       </section>
+      <section class="ip-content ip-services" id="ip-services" data-ip-section="我能做..." aria-labelledby="ip-services-title">
+        <h2 id="ip-services-title">我能為你做什麼？</h2>
+        <div class="ip-services-grid">
+          <article class="ip-service" aria-labelledby="ip-service-character-title">
+            <h3 id="ip-service-character-title">角色與 IP 設計</h3>
+            <p>原創角色設定、造型設計，建立具有辨識度的角色形象。</p>
+          </article>
+          <article class="ip-service" aria-labelledby="ip-service-product-title">
+            <h3 id="ip-service-product-title">文創商品開發</h3>
+            <p>從商品構想、設計、打樣到廠商溝通，將平面角色轉化成實體商品。</p>
+          </article>
+          <article class="ip-service" aria-labelledby="ip-service-social-title">
+            <h3 id="ip-service-social-title">社群內容企劃</h3>
+            <p>運用插圖、漫畫與角色故事製作社群內容，累積 IP 經營與受眾互動經驗。</p>
+          </article>
+        </div>
+      </section>
       <section class="ip-content ip-portals" id="ip-portals" data-ip-section="傳送門" aria-labelledby="ip-portals-title">
         <h2 id="ip-portals-title">傳送門</h2>
         <div class="portal-scene" id="ip-portal-scene" aria-label="前往其他專區與聯絡我"></div>
@@ -218,6 +235,7 @@
         <button type="button" data-section-target="ip-illustrations" aria-controls="ip-illustrations"><svg class="ink-circle" viewBox="0 0 100 100" aria-hidden="true"><use href="#ink-circle" /></svg><span>插圖</span></button>
         <button type="button" data-section-target="ip-stickers" aria-controls="ip-stickers"><svg class="ink-circle" viewBox="0 0 100 100" aria-hidden="true"><use href="#ink-circle" /></svg><span>貼圖</span></button>
         <button type="button" data-section-target="ip-merchandise" aria-controls="ip-merchandise"><svg class="ink-circle" viewBox="0 0 100 100" aria-hidden="true"><use href="#ink-circle" /></svg><span>周邊</span></button>
+        <button type="button" data-section-target="ip-services" aria-controls="ip-services"><span>我能做...</span></button>
         <button type="button" data-section-target="ip-portals" aria-controls="ip-portals"><svg class="ink-circle" viewBox="0 0 100 100" aria-hidden="true"><use href="#ink-circle" /></svg><span>傳送門</span></button>
       </nav>
     </section>
