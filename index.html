@@ -18,7 +18,7 @@
       const sources=route==='/ip'?["assets/optimized/058a39d3969368eb3e4829151b7b8051e97d648e07dd51801ca43175f75e352a.webp", "assets/optimized/ef52352cfb2dc2a32364cc473c145b930a42d0aecf156d05f89c3ff9fc53e8bb.webp", "assets/optimized/e973f23daa3c8dba63fded1003da3b9cd7bc5f505b18b9b545417f44c1b043d9.webp", "assets/optimized/55226ea59ae0a6cb0b76bf85949ce5a8e42a6e00064e81f4310be7314ea26c1c.webp", "assets/optimized/0dd7998a3def085e7eae17bf80828f7b18add6249d6b7342c098cd139e00da1a.webp", "assets/optimized/0a7cbb403df68b3c2ef93e5743482c3a580f723b1088bb3848b5e71250c32804.webp"]:route==='/'?["assets/optimized/fb9694c743b95bca476851fddd7d3d0e98d9698d5ca3030caac87f0358b32438.webp"]:[];
       for(const href of sources){const link=document.createElement('link');link.rel='preload';link.as='image';link.href=href;link.fetchPriority='high';document.head.append(link);}
     })();</script>
-    <link rel="stylesheet" href="styles.css?v=849ab319ac06">
+    <link rel="stylesheet" href="styles.css?v=b747f42b442d">
 <meta property="og:type" content="website">
 <meta property="og:title" content="個人作品集｜Materials × Creative Design">
 <meta property="og:description" content="材料科學、插畫創作與 IP 企劃的個人作品集。">
@@ -250,6 +250,23 @@
 <span>還有在插圖中加入不同風格的元素作為實驗，</span>
 <span>探索更多元的表達方式</span></p>
       </section>
+      <section class="ip-content illustration-services" id="illustration-services" data-illustration-section aria-labelledby="illustration-services-title">
+        <h2 id="illustration-services-title">我能為你做什麼？</h2>
+        <div class="ip-services-grid">
+          <article class="ip-service" aria-labelledby="illustration-service-visual-title">
+            <h3 id="illustration-service-visual-title">插畫與視覺設計</h3>
+            <p>人物插畫、情境繪製、主題式創作<br>依照不同內容設計適合的視覺表現。</p>
+          </article>
+          <article class="ip-service" aria-labelledby="illustration-service-event-title">
+            <h3 id="illustration-service-event-title">活動主視覺</h3>
+            <p>將活動主題轉化為插畫<br>延伸設計海報、宣傳素材與相關視覺元素。</p>
+          </article>
+          <article class="ip-service" aria-labelledby="illustration-service-mascot-title">
+            <h3 id="illustration-service-mascot-title">吉祥物與延伸設計</h3>
+            <p>角色造型、活動吉祥物、貼紙與周邊圖像。</p>
+          </article>
+        </div>
+      </section>
       <section class="ip-content ip-portals" id="illustration-portals" data-illustration-section aria-labelledby="illustration-portals-title">
         <h2 id="illustration-portals-title">傳送門</h2>
         <div class="portal-scene" id="illustration-portal-scene" aria-label="前往聯絡我、IP與材料科學"></div>
@@ -257,6 +274,7 @@
       <nav class="illustration-section-nav" aria-label="插圖頁面區域">
         <button type="button" data-illustration-target="illustration-finished" aria-controls="illustration-finished"><svg class="ink-circle" viewBox="0 0 100 100" aria-hidden="true"><use href="#ink-circle" /></svg><span>成品</span></button>
         <button type="button" data-illustration-target="illustration-interests" aria-controls="illustration-interests"><svg class="ink-circle" viewBox="0 0 100 100" aria-hidden="true"><use href="#ink-circle" /></svg><span>創作<br>興趣</span></button>
+        <button type="button" data-illustration-target="illustration-services" aria-controls="illustration-services"><span>我能做...</span></button>
         <button type="button" data-illustration-target="illustration-portals" aria-controls="illustration-portals"><svg class="ink-circle" viewBox="0 0 100 100" aria-hidden="true"><use href="#ink-circle" /></svg><span>傳送門</span></button>
       </nav>
       <dialog class="illustration-lightbox" id="illustration-lightbox" aria-label="完整作品檢視">
