@@ -415,6 +415,8 @@ body {
 .ip-service { min-width: 0; padding: 32px 20px; border-radius: 24px; background: #f6ebca; text-align: center; color: #315b38; font-family: system-ui,sans-serif; }
 .ip-service h3 { margin: 0; font: 700 clamp(20px,2vw,26px)/1.5 system-ui,sans-serif; }
 .ip-service p { max-width: 30em; margin: 16px auto 0; font: 400 16px/1.7 system-ui,sans-serif; text-wrap: pretty; }
+.illustration-services .ip-service { display: grid; grid-template-rows: auto 1fr; }
+.illustration-services .ip-service p { align-self: center; }
 @media (max-width:600px) { .ip-services-grid { grid-template-columns: minmax(0,1fr); margin-top: 28px; gap: 36px; } }
 @media (max-width:900px) { .merchandise-grid { grid-template-columns: repeat(2,minmax(0,1fr)); } .merchandise-photos { height: 360px; } }
 @media (max-width:600px) { .merchandise-grid { grid-template-columns: minmax(0,1fr); margin-top: 32px; gap: 40px; } .merchandise-photos { height: auto; } .merchandise-photos img { height: auto; } }
