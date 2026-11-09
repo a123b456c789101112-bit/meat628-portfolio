@@ -1,0 +1,42 @@
+name: Publish to Cloudflare
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions: {}
+
+concurrency:
+  group: cloudflare-production
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - name: Request production deployment
+        env:
+          CLOUDFLARE_DEPLOY_HOOK: ${{ secrets.CLOUDFLARE_DEPLOY_HOOK }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ -z "$CLOUDFLARE_DEPLOY_HOOK" ]]; then
+            echo '::error::Add the CLOUDFLARE_DEPLOY_HOOK repository secret in Settings > Secrets and variables > Actions, then rerun this workflow.'
+            exit 1
+          fi
+          if [[ ! "$CLOUDFLARE_DEPLOY_HOOK" =~ ^https://api\.cloudflare\.com/client/v4/pages/webhooks/deploy_hooks/[A-Za-z0-9-]+$ ]]; then
+            echo '::error::CLOUDFLARE_DEPLOY_HOOK must contain only the Cloudflare Pages deploy hook URL.'
+            exit 1
+          fi
+          response="$RUNNER_TEMP/cloudflare-deploy.json"
+          curl --fail --silent --show-error --connect-timeout 10 --max-time 60 \
+            --request POST "$CLOUDFLARE_DEPLOY_HOOK" --output "$response"
+          if ! jq -e '.success == true and (.result.id | type == "string" and length > 0)' "$response" > /dev/null; then
+            echo '::error::Cloudflare did not accept the deployment request. Check the deploy hook in Cloudflare Pages settings.'
+            exit 1
+          fi
+          echo 'Cloudflare accepted the production deployment request.'
+          echo '### Cloudflare deployment requested' >> "$GITHUB_STEP_SUMMARY"
+          echo 'Cloudflare is building the latest main branch. Confirm completion in the Cloudflare Pages Deployments tab.' >> "$GITHUB_STEP_SUMMARY"
