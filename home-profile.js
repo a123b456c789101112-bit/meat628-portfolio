@@ -14,7 +14,8 @@
     if(home.hidden)return;
     const box=profile.getBoundingClientRect(), name=identity.getBoundingClientRect(), scene=landscape.getBoundingClientRect();
     const gap=innerWidth<=600 ? 14 : 18;
-    Object.assign(contact.style,{left:`${name.left-scene.left}px`,top:`${box.bottom-scene.top+gap}px`});
+    const mobile=innerWidth<=600;
+    Object.assign(contact.style,{left:`${name.left-scene.left}px`,top:`${(mobile?name.bottom:box.bottom)-scene.top+gap}px`,width:mobile?`${name.width}px`:'',gap:mobile?'0':'',justifyContent:mobile?'space-between':''});
   }
   new ResizeObserver(placeContact).observe(profile);
   new MutationObserver(()=>{if(!home.hidden)placeContact();}).observe(home,{attributes:true,attributeFilter:['hidden']});

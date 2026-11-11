@@ -198,6 +198,9 @@
     fur.resize(stage);
     for (const sign of signs) {
       const style = getComputedStyle(sign.element);
+      sign.mobileDrop = innerWidth<=600 ? stage.bounds.width * (sign.name==='ip'?.18:sign.name==='materials'?.09:0) : 0;
+      sign.element.style.translate=`0 ${sign.mobileDrop}px`;
+      sign.shadow.style.translate=`0 ${sign.mobileDrop}px`;
       sign.x = parseFloat(style.getPropertyValue("--x")) / 100 * stage.width;
       sign.y = parseFloat(style.getPropertyValue("--y")) / 100 * stage.height;
       const slotWidth = parseFloat(style.getPropertyValue("--width")) / 100 * stage.width;
@@ -273,7 +276,7 @@
     if (!stage.bounds) return null;
     const x = (clientX - stage.bounds.x) / stage.scale;
     const y = (clientY - stage.bounds.y) / stage.scale;
-    return x >= 0 && y >= 0 && x <= stage.width && y <= stage.height ? { x, y } : null;
+    return x >= 0 && y >= 0 && x <= stage.width && y <= stage.height+(innerWidth<=600?stage.width*.18:0) ? { x, y } : null;
   }
 
   function sample(map, x, y) {
@@ -295,10 +298,12 @@
   }
 
   function visibleHit(sign, point) {
+    point={...point,y:point.y-(sign.mobileDrop||0)/stage.scale};
     return uncovered(sign, point) && artworkHit(sign, point, sign.offset);
   }
 
   function stableHit(sign, point) {
+    point={...point,y:point.y-(sign.mobileDrop||0)/stage.scale};
     if (!uncovered(sign, point)) return false;
     if (artworkHit(sign, point, sign.offset) || artworkHit(sign, point, 0)) return true;
     // 保留原位至浮起位置之間的連續互動區域，圖片移動不會令 hover 失效。
