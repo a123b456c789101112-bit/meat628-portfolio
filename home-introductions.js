@@ -114,6 +114,21 @@ window.createHomeIntroductions = ({layer,viewport,profile,settings,reduceMotion,
           card.baseY=stage.bounds.top-view.top+(sign.y+sign.height*.5)*stage.scale+(sign.mobileDrop||0)+12;
         }
       }
+      if(card.config.name==='materials') {
+        const sign=signs.find(sign=>sign.name==='materials');
+        const left=artworkEdges(sign,stage,view).left;
+        const bodyCenter=stage.bounds.top-view.top+(sign.y+sign.height*.18)*stage.scale+(sign.mobileDrop||0);
+        if(view.width>600 && left-24>=180) {
+          card.width=Math.min(card.width,left-24);
+          card.height=card.width*1832/1845;
+          card.baseX=left-card.width-12;
+          card.baseY=bodyCenter-card.height*.5;
+        } else {
+          const center=stage.bounds.left-view.left+sign.x*stage.scale;
+          card.baseX=Math.max(12,Math.min(center-card.width/2,view.width-card.width-12));
+          card.baseY=stage.bounds.top-view.top+(sign.y+sign.height*.5)*stage.scale+(sign.mobileDrop||0)+12;
+        }
+      }
       Object.assign(card.panel.style,{left:`${card.baseX}px`,width:`${card.width}px`});
       card.panel.style.setProperty('--dialog-font-size',`${Math.max(14,card.width*.077)}px`);
       if(card.loaded) ensure(card);
@@ -138,7 +153,7 @@ window.createHomeIntroductions = ({layer,viewport,profile,settings,reduceMotion,
       const shown=opacity>.001 && card.loaded;
       card.panel.style.opacity=String(opacity);card.panel.style.visibility=shown?'visible':'hidden';
       card.panel.setAttribute('aria-hidden',String(!shown));
-      const rise=(card.config.name==='ip'||card.config.name==='illustration') ? (reduceMotion.matches?0:12*(1-Math.min(1,Math.max(0,-offset/Math.max(1,sign.lift))))) : offset*geometry.scale;
+      const rise=['ip','illustration','materials'].includes(card.config.name) ? (reduceMotion.matches?0:12*(1-Math.min(1,Math.max(0,-offset/Math.max(1,sign.lift))))) : offset*geometry.scale;
       const top=Math.max(12,Math.min(card.baseY+rise,geometry.view.height-card.height-12));
       card.panel.style.top='0px';card.panel.style.transform=`translate3d(0,${top}px,0)`;
       if(!reduceMotion.matches && Math.abs(offset-sign.offset)*geometry.scale>.015) moving=true;

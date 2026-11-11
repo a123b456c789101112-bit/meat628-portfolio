@@ -827,3 +827,6 @@ body:has(#materials-viewport:not([hidden])) .home-link { top: var(--materials-ho
 
 .sign--illustration { --angle: 0deg; mask-image: none; -webkit-mask-image: none; }
 .sign--illustration .sign__motion { transform-origin: 50% 100%; }
+
+.sign--materials { --angle: 0deg; mask-image: none; -webkit-mask-image: none; }
+.sign--materials .sign__motion { transform-origin: 50% 100%; }
