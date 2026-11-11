@@ -182,11 +182,11 @@
   function draw(sign) {
     sign.motion.style.transform = `translate3d(0, ${sign.offset * stage.scale}px, 0)`;
     const progress = sign.lift ? Math.max(0, Math.min(config.motion.overshoot, -sign.offset / sign.lift)) : 0;
-    if(sign.name==='ip') {
+    if(sign.name==='ip'||sign.name==='illustration') {
       const standing=progress>=.45;
       sign.motion.style.transform=`scaleY(${1-.06*Math.sin(Math.min(1,progress)*Math.PI)})`;
-      document.getElementById('sign-image-ip').setAttribute('opacity',standing?'0':'1');
-      document.getElementById('sign-image-ip-standing').setAttribute('opacity',standing?'1':'0');
+      document.getElementById(`sign-image-${sign.name}`).setAttribute('opacity',standing?'0':'1');
+      document.getElementById(`sign-image-${sign.name}-standing`).setAttribute('opacity',standing?'1':'0');
       sign.element.dataset.pose=standing?'standing':'resting';
       sign.shadowMotion.style.transform=`scale(${config.shadow.groundSpread}, ${config.shadow.groundFlatten})`;
       sign.shadowMotion.style.opacity=config.shadow.groundOpacity;
@@ -296,12 +296,12 @@
   }
 
   function uncovered(sign, point) {
-    if(sign.name==='ip') return true;
+    if(sign.name==='ip'||sign.name==='illustration') return true;
     return sample(sign.mask, point.x / stage.width * sign.mask.width, point.y / stage.height * sign.mask.height) < config.hitTest.groundAlpha;
   }
 
   function artworkHit(sign, point, offset) {
-    if(sign.name==='ip') offset=0;
+    if(sign.name==='ip'||sign.name==='illustration') offset=0;
     const dx = point.x - sign.x;
     const dy = point.y - sign.y - offset;
     const x = dx * Math.cos(sign.angle) + dy * Math.sin(sign.angle);
@@ -677,8 +677,8 @@
       const crop = sign.art.viewBox.baseVal;
       const image = await loadImage(sign.art.querySelector("image").href.baseVal);
       sign.alpha = alphaMap(image, Math.round(crop.width), Math.round(crop.height), crop);
-      if(sign.name==='ip') {
-        const standing=await loadImage(document.getElementById('sign-image-ip-standing').href.baseVal);
+      if(sign.name==='ip'||sign.name==='illustration') {
+        const standing=await loadImage(document.getElementById(`sign-image-${sign.name}-standing`).href.baseVal);
         const second=alphaMap(standing,Math.round(crop.width),Math.round(crop.height),crop);
         for(let i=0;i<sign.alpha.alpha.length;i++) sign.alpha.alpha[i]=Math.max(sign.alpha.alpha[i],second.alpha[i]);
       }

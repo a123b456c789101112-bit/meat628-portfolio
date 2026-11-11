@@ -824,3 +824,6 @@ body:has(#materials-viewport:not([hidden])) .home-link { top: var(--materials-ho
 /* IP 改為原地趴下／站起，保留原位置與對話框節奏。 */
 .sign--ip { --angle: 0deg; mask-image: none; -webkit-mask-image: none; }
 .sign--ip .sign__motion { transform-origin: 50% 100%; }
+
+.sign--illustration { --angle: 0deg; mask-image: none; -webkit-mask-image: none; }
+.sign--illustration .sign__motion { transform-origin: 50% 100%; }

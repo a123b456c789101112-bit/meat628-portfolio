@@ -99,10 +99,10 @@ window.createHomeIntroductions = ({layer,viewport,profile,settings,reduceMotion,
           card.baseY=Math.max(stage.bounds.bottom-view.top+12,portrait.bottom-view.top+16);
         }
       }
-      if(card.config.name==='ip') {
-        const sign=signs.find(sign=>sign.name==='ip');
+      if(card.config.name==='ip'||card.config.name==='illustration') {
+        const sign=signs.find(sign=>sign.name===card.config.name);
         const right=artworkEdges(sign,stage,view).right;
-        const bodyCenter=stage.bounds.top-view.top+(sign.y+sign.height*.22)*stage.scale+(sign.mobileDrop||0);
+        const bodyCenter=stage.bounds.top-view.top+(sign.y+sign.height*(sign.name==='ip'?.22:.16))*stage.scale+(sign.mobileDrop||0);
         if(view.width>600 && view.width-right-24>=180) {
           card.baseX=right+12;
           card.width=Math.min(card.width,view.width-card.baseX-12);
@@ -138,7 +138,7 @@ window.createHomeIntroductions = ({layer,viewport,profile,settings,reduceMotion,
       const shown=opacity>.001 && card.loaded;
       card.panel.style.opacity=String(opacity);card.panel.style.visibility=shown?'visible':'hidden';
       card.panel.setAttribute('aria-hidden',String(!shown));
-      const rise=card.config.name==='ip' ? (reduceMotion.matches?0:12*(1-Math.min(1,Math.max(0,-offset/Math.max(1,sign.lift))))) : offset*geometry.scale;
+      const rise=(card.config.name==='ip'||card.config.name==='illustration') ? (reduceMotion.matches?0:12*(1-Math.min(1,Math.max(0,-offset/Math.max(1,sign.lift))))) : offset*geometry.scale;
       const top=Math.max(12,Math.min(card.baseY+rise,geometry.view.height-card.height-12));
       card.panel.style.top='0px';card.panel.style.transform=`translate3d(0,${top}px,0)`;
       if(!reduceMotion.matches && Math.abs(offset-sign.offset)*geometry.scale>.015) moving=true;
