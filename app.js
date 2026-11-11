@@ -188,7 +188,12 @@
       document.getElementById(`sign-image-${sign.name}`).setAttribute('opacity',standing?'0':'1');
       document.getElementById(`sign-image-${sign.name}-standing`).setAttribute('opacity',standing?'1':'0');
       sign.element.dataset.pose=standing?'standing':'resting';
-      sign.shadowMotion.style.transform=`scale(${config.shadow.groundSpread}, ${config.shadow.groundFlatten})`;
+      if(sign.feet) {
+        const foot=sign.feet[standing?1:0];
+        sign.shadow.style.left=`${(sign.x+(foot.x-.5)*sign.width)*stage.scale}px`;
+        sign.shadow.style.top=`${(sign.y+(foot.y-.52)*sign.height)*stage.scale}px`;
+      }
+      sign.shadowMotion.style.transform=`scale(${config.shadow.groundSpread}, .35)`;
       sign.shadowMotion.style.opacity=config.shadow.groundOpacity;
       return;
     }
@@ -230,7 +235,7 @@
       const footX = sign.x - Math.sin(sign.angle) * sign.height * config.shadow.footRatio;
       sign.shadowX = shadowAnchor.x === undefined ? footX : shadowAnchor.x * stage.width;
       sign.shadowY = shadowAnchor.groundY * stage.height;
-      sign.shadowBaseWidth = shadowAnchor.width || sign.width * shadowAnchor.widthRatio;
+      sign.shadowBaseWidth = sign.width * .92;
       const shadowBox = sign.shadowArt.viewBox.baseVal;
       sign.shadow.style.left = `${sign.shadowX * stage.scale}px`;
       sign.shadow.style.top = `${sign.shadowY * stage.scale}px`;
@@ -680,6 +685,12 @@
       if(['ip','illustration','materials'].includes(sign.name)) {
         const standing=await loadImage(document.getElementById(`sign-image-${sign.name}-standing`).href.baseVal);
         const second=alphaMap(standing,Math.round(crop.width),Math.round(crop.height),crop);
+        sign.feet=[sign.alpha,second].map(map=>{
+          let bottom=0,left=map.width,right=0;
+          for(let y=0;y<map.height;y++) for(let x=0;x<map.width;x++) if(map.alpha[y*map.width+x]>160) bottom=Math.max(bottom,y);
+          for(let y=Math.max(0,bottom-Math.ceil(map.height*.1));y<=bottom;y++) for(let x=0;x<map.width;x++) if(map.alpha[y*map.width+x]>160){left=Math.min(left,x);right=Math.max(right,x);}
+          return {x:(left+right)/2/map.width,y:bottom/map.height};
+        });
         for(let i=0;i<sign.alpha.alpha.length;i++) sign.alpha.alpha[i]=Math.max(sign.alpha.alpha[i],second.alpha[i]);
       }
       sign.mask = await prepareMask(sign, ground);

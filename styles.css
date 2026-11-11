@@ -830,3 +830,7 @@ body:has(#materials-viewport:not([hidden])) .home-link { top: var(--materials-ho
 
 .sign--materials { --angle: 0deg; mask-image: none; -webkit-mask-image: none; }
 .sign--materials .sign__motion { transform-origin: 50% 100%; }
+/* 用原草地透出腳邊，只有底部少量淡入，角色主體維持清楚。 */
+.sign__art { -webkit-mask-image: linear-gradient(to bottom,#000 0%,#000 96.5%,transparent 100%); mask-image: linear-gradient(to bottom,#000 0%,#000 96.5%,transparent 100%); }
+.sign-shadow { -webkit-mask-image: none; mask-image: none; }
+.sign-shadow__art { opacity: .72; }
