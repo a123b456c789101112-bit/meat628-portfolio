@@ -4,6 +4,33 @@ window.createPortfolioFur = ({ layer, settings, schedule, enabled, interactive, 
   const namespace = "http://www.w3.org/2000/svg";
   const tufts = [];
   const decodedArtwork = [];
+  let continuation = null;
+  function extendMobileGrass() {
+    const count = settings.tufts.length;
+    tufts.splice(count);
+    continuation?.remove(); continuation = null;
+    if (!geometry || tufts.length < count || innerWidth > 600 || innerHeight <= innerWidth) return;
+    const landscape = layer.closest('.home-landscape'), bounds = landscape.getBoundingClientRect();
+    const remaining = bounds.bottom - geometry.bounds.bottom;
+    if (remaining <= 0) return;
+    const extra = remaining / geometry.scale;
+    continuation = svg('svg', {class:'mobile-grass-continuation',viewBox:`0 1406 2500 ${extra}`,'aria-hidden':'true'});
+    Object.assign(continuation.style,{position:'absolute',left:`${geometry.bounds.left-bounds.left}px`,top:`${geometry.bounds.bottom-bounds.top}px`,width:`${geometry.bounds.width}px`,height:`${remaining}px`,pointerEvents:'none',overflow:'hidden',zIndex:'1'});
+    const originals = [...layer.querySelectorAll('[data-fur]')];
+    const band = .35 * 1406;
+    for (let row=0;row<Math.ceil(extra/band);row++) {
+      settings.tufts.forEach((placement,index)=>{
+        if (placement.y < .65) return;
+        const delta = band + row*band;
+        if (placement.y*1406+delta > 1406+extra+100) return;
+        const wrapper=svg('g',{transform:`translate(0 ${delta})`});
+        const copy=originals[index].cloneNode(true),motion=copy.querySelector('.fur__motion');
+        motion.setAttribute('transform','');wrapper.append(copy);continuation.append(wrapper);
+        tufts.push({...tufts[index],motion,y:tufts[index].y+delta,angle:0,velocity:0,stroke:0,drawn:null});
+      });
+    }
+    landscape.append(continuation);
+  }
   let pointer = null;
   let previous = null;
   let segments = [];
@@ -96,6 +123,7 @@ window.createPortfolioFur = ({ layer, settings, schedule, enabled, interactive, 
       layer.append(group);
       tufts.push({ motion, artHeight, x: x + Math.sin(radians) * height * 0.55, y: y - Math.cos(radians) * height * 0.55, angle: 0, velocity: 0, stroke: 0, drawn: null });
     }
+    extendMobileGrass();
     reset();
     layer.dataset.ready = "true";
     if (enabled()) schedule();
@@ -103,6 +131,7 @@ window.createPortfolioFur = ({ layer, settings, schedule, enabled, interactive, 
 
   function resize(stage) {
     geometry = { bounds: stage.bounds, scale: stage.scale };
+    extendMobileGrass();
     reset();
     if (enabled() && tufts.length) schedule();
   }
